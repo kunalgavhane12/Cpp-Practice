@@ -1,0 +1,414 @@
+/***class and objects***/
+
+#include <iostream>
+
+using namespace std;
+class demo{
+  public:
+  void display(){
+      cout<<"Welcome to C++ Programming World";
+  }
+};
+
+int main()
+{
+    demo d;
+    d.display();
+    return 0;
+}
+********************************************
+#include <iostream>
+#define PI 3.14
+
+using namespace std;
+class Circle{
+    private:
+    float radius;
+    
+    public:
+    
+    void getRadius()
+    {
+        cout<<"Enter radius::";
+        cin >> radius;
+    }
+    void area()
+    {
+        float ar;
+        ar = PI * radius * radius;
+        cout << "Area of Circle: "<<ar<<endl;
+    }
+    void showRadius()
+    {
+        cout << "Radius: "<<radius<<endl;
+    }
+};
+
+int main()
+{
+    Circle c1;
+    c1.getRadius();
+    c1.showRadius();
+    c1.area();
+    
+    return 0;
+}
+*************************************************************
+#include <iostream>
+using namespace std;
+class Distance{
+    private:
+    int feet;
+    float inches;
+    public:
+    void getDist()
+    {
+        cout << "Enter Feet::"<<endl;
+        cin >> feet;
+        cout << "Enter inches::"<<endl;
+        cin >> inches;
+    }
+    void showDist()
+    {
+        cout << feet <<"'-"<<inches<<"\"";
+    }
+};
+int main()
+{
+    Distance d;
+    d.getDist();
+    d.showDist();
+}
+**************************************************************
+//Class with argument
+#include <iostream>
+#include <cstring>
+#include <cstdio>
+
+using namespace std;
+class stringfun{
+  char name[20];
+  public:
+  void concatString(char a[],char b[])
+  {
+      strcat(a,b);
+      strcpy(name,a);
+  }
+  void display()
+  {
+      cout<<"Name: "<<name<<endl;
+  }
+};
+int main()
+{
+    char str1[10],str2[10];
+    stringfun sf;
+    cout<<"Enter your name:";
+    gets(str1);
+    cout<<"Enter sirname:";
+    gets(str2);
+    
+    sf.concatString(str1,str2);
+    sf.display();
+    
+    return 0;
+}
+**********************************************************
+// Class without argument
+#include <iostream>
+
+using namespace std;
+class testMax{
+  private:
+  int val_A,val_B;
+  public:
+  void getValue()
+  {
+      cout<<"Enter A:";
+      cin>>val_A;
+      cout<<"Enter B:";
+      cin>>val_B;
+  }
+  void checkMax()
+  {
+      if(val_A>val_B)
+      {
+          cout<<"A is max";
+      }
+      else
+      {
+          cout<<"B is max";
+      }
+  }
+};
+int main()
+{
+    testMax tm;
+    tm.getValue();
+    tm.checkMax();
+}
+*************************************************************
+//Simple Member Function
+#include <iostream>
+
+using namespace std;
+class member{
+  public:
+  void inside()
+  {
+      cout<<"This is Inside member function"<<endl;
+  }
+  void outside();
+};
+void member::outside()
+{
+    cout<<"This is outside member function"<<endl;
+}
+int main()
+{
+    member m;
+    m.inside();
+    m.outside();
+}
+**************************************************************
+//Program to define Member Function outside the class
+#include <iostream>
+#define PI 3.14
+
+using namespace std;
+class Circle{
+  float radius;
+  public:
+  void getRadius();
+  void showRadius();
+  float area();
+};
+void Circle::getRadius()
+{
+    cout<<"Enter radius::";
+    cin>>radius;
+}
+void Circle::showRadius()
+{
+    cout<<"Radius: "<<radius<<endl;
+}
+float Circle:: area()
+{
+    float ar;
+    ar=PI*radius*radius;
+    return ar;
+}
+int main()
+{
+    Circle c1;
+    c1.getRadius();
+    c1.showRadius();
+    float a=c1.area();
+    cout<<"Area of circle: "<<a<<endl;
+}
+***********************************************************
+//Initialize object using function
+#include <iostream>
+#define PI 3.14
+using namespace std;
+class Circle{
+    float radius;
+    public:
+    void init(float r);
+    void getRadius();
+    float area();
+    void showRadius();
+};
+void Circle::init(float r)
+{
+    radius=r;
+}
+void Circle::getRadius()
+{
+    cout<<"Enter the radius::";
+    cin>>radius;
+}
+float Circle::area()
+{
+    float ar;
+    ar=PI*radius*radius;
+    return ar;
+}
+void Circle::showRadius()
+{
+    cout<<"Radius: "<<radius<<endl;
+}
+int main()
+{
+    Circle c1;
+    c1.init(10);
+    //c1.getRadius();
+    c1.showRadius();
+    float a=c1.area();
+    cout<<"Area of Circle:"<<a<<endl;
+}
+*************************************************************************
+//Inline Function example
+#include <iostream>
+using namespace std;
+class line{
+  public:
+  inline float mul(float x,float y)
+  {
+      return (x*y);
+  }
+  inline float cube(float x)
+  {
+      return (x*x*x);
+  }
+};
+int main()
+{
+    line obj;
+    float val1,val2;
+    cout<<"Enter two value:";
+    cin>>val1>>val2;
+    cout<<"Multiplication value is: "<<obj.mul(val1,val2)<<endl;
+    cout<<"Cube value is: "<<obj.cube(val1)<<" "<<obj.cube(val2);
+}
+*************************************************************************
+//Inline function outside the class
+#include <iostream>
+#define PI 3.14
+
+using namespace std;
+class Circle{
+  float radius;
+  public:
+  void init(float r);
+  void getRadius();
+  float area();
+  void showRadius();
+};
+void Circle::init(float r)
+{
+    radius=r;
+}
+void Circle:: getRadius()
+{
+    cout<<"Enter Radius::";
+    cin>>radius;
+}
+inline float Circle:: area()
+{
+    float ar;
+    ar=PI*radius*radius;
+    return ar;
+}
+inline void Circle:: showRadius()
+{
+    cout<<"Radius: "<<radius<<endl;
+}
+int main()
+{
+    Circle c1;
+    c1.getRadius();
+    c1.showRadius();
+    float a=c1.area();
+    cout<<"Area of Circle: "<<a;
+}
+**********************************************************************
+// Friend Function
+#include <iostream>
+#define PI 3.14
+
+using namespace std;
+class Circle{
+  float radius;
+  public:
+  void init(float r);
+  void getRadius();
+  float area();
+  void showRadius();
+};
+void Circle::init(float r)
+{
+    radius=r;
+}
+void Circle:: getRadius()
+{
+    cout<<"Enter Radius::";
+    cin>>radius;
+}
+inline float Circle:: area()
+{
+    float ar;
+    ar=PI*radius*radius;
+    return ar;
+}
+inline void Circle:: showRadius()
+{
+    cout<<"Radius: "<<radius<<endl;
+}
+int main()
+{
+    Circle c1;
+    c1.getRadius();
+    c1.showRadius();
+    float a=c1.area();
+    cout<<"Area of Circle: "<<a;
+}
+******************************************************************
+//Constant member function
+#include <iostream>
+using namespace std;
+class A{
+    int x;
+    public:
+    void getX()
+    {
+        cout<<"Enter X:: ";
+        cin>>x;
+    }
+    void showX() const
+    {
+        //x=x*2; //can't change Data members.
+        cout<<"X: "<<x;
+    }
+};
+int main()
+{
+    A a1;
+    a1.getX();
+    a1.showX();
+}
+***********************************************************************
+//This Pointer
+#include <iostream>
+#define PI 3.14
+using namespace std;
+
+class Circle{
+  float radius;
+  public:
+  void setRadius(float radius);
+  float getRadius();
+  float area();
+};
+void Circle:: setRadius(float radius)
+{
+    this->radius=radius;
+}
+float Circle:: getRadius()
+{
+    return this->radius;
+}
+float Circle:: area()
+{
+    return PI*radius*radius;
+}
+int main()
+{
+    Circle c1;
+    c1.setRadius(10);
+    float a=c1.area();
+    cout<<"Radius: "<<c1.getRadius()<<endl;
+    cout<<"Area of Circle: "<<a;
+    
+}
+**********************************************************************

@@ -1,0 +1,244 @@
+//Exception Handling using try,catch and throw
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a,b;
+    cout << "Enter value of a and b :";
+    cin >> a >> b;
+    
+    int c = a - b;
+    try{
+        if(c!=0)
+        {
+            cout<<"Result : "<<(a/c)<<endl;
+        }
+        else
+        {
+            throw(c);
+        }
+    }
+    catch(int i)
+    {
+        cerr << "Exception caught : "<<i<<endl;
+    }
+    cout<<"END.";
+}
+*******************************************************************************/
+//Throwing exception from function and catching in main function
+#include <iostream>
+using namespace std;
+void divide(int x,int y,int z)
+{
+    cout << "Inside divide().";
+    if((x-y) !=0)
+    {
+        int res = z/(x-y);
+        cout<<"Result: "<< res<<endl;
+    }
+    else
+    {
+        throw(x-y);
+    }
+}
+int main()
+{
+    try{
+        cout << "Inside main()."<<endl;
+        divide(10,20,30);
+        divide(10,10,20);
+    }
+    catch(int i)
+    {
+        cerr<<"Exception caught : "<<i<<endl;
+    }
+    cout<<"End.";
+    
+}
+*******************************************************************************/
+// Throwing exception from function and catching in main function
+
+#include <iostream>
+
+using namespace std;
+double division(int a,int b)
+{
+    if(b==0)
+    {
+        throw "Division by zero condition!";
+    }
+    return (a/b);
+}
+int main()
+{
+    int x = 50;
+    int y = 0;
+    double z = 0;
+    
+    try{
+        z = division(x,y);
+        cout << z <<endl;
+    }
+    catch(const char *msg)
+    {
+        cerr << msg <<endl;
+    }
+    return 0;
+}
+*******************************************************************************/
+//Multiple Catch block
+#include <iostream>
+
+using namespace std;
+void test(int x)
+{
+    try{
+        if(x==0)
+        throw 'B';
+        else if(x==1)
+        throw 'x';
+        else if (x==2)
+        throw 1.0;
+        cout<<"End of try-block."<<endl;
+    }
+    catch(char c)
+    {
+        cerr<<"Caught a char : "<<c<<endl;
+    }
+    catch(int i)
+    {
+        cerr<<"Caught a int : "<<i<<endl;
+    }
+    catch(double d)
+    {
+        cerr<<"Caught a double : "<<d<<endl;
+    }
+    cout << "End of try-catch system."<<endl;
+}
+int main()
+{
+    cout<<"Testing Multiple catches."<<endl;
+    cout<<"x == 0"<<endl;
+    test(0);
+    cout<<"x == 1"<<endl;
+    test(1);
+    cout<<"x == 2"<<endl;
+    test(2);
+    cout<<"x == 3"<<endl;
+    test(3);
+    
+    return 0;
+}
+*******************************************************************************/
+//Generic Catch block to Catch all type of Exceptions
+#include <iostream>
+
+using namespace std;
+void test(int x)
+{
+    try{
+        if(x==0)
+        throw 'B';
+        else if(x==1)
+        throw x;
+        else if (x==2)
+        throw 1.0;
+        cout<<"End of try-block."<<endl;
+    }
+    catch(...)
+    {
+        cerr<<"Caught an Exceptions."<<endl;
+    }
+    cout <<"End of try-catch system"<<endl;
+}
+int main()
+{
+    cout<<"Testing Generic catch."<<endl;
+    cout<<"x == 0 "<<endl;
+    test(0);
+    cout<<"x == 1 "<<endl;
+    test(1);
+    cout<<"x == 2 "<<endl;
+    test(2);
+    cout<<"x == 3 "<<endl;
+    test(3);
+}
+*******************************************************************************/
+//Rethrowing the exception from inner catch to outer catch
+#include <iostream>
+using namespace std;
+void divide(double x, double y)
+{
+    cout<<"Inside divide()."<<endl;
+    try{
+        if(y == 0.0)
+        {
+            throw y;
+        }
+        else{
+            cout<<"Division : "<<(x/y)<<endl;
+        }
+    }
+    catch(double){
+            cerr<<"Caught double inside divide."<<endl;
+            throw;
+        }
+        cout<<"End of function"<<endl;
+}
+int main()
+{
+    try{
+        cout<<"Inside main."<<endl;
+        divide(20.5,10.5);
+        divide(10.0,0);
+    }
+    catch(double d)
+    {
+        cerr<<"Exception double inside main."<<endl;
+    }
+    cout<<"End."<<endl;
+}
+*******************************************************************************/
+//Specifying exceptions in the function throw list
+#include <iostream>
+
+using namespace std;
+void test(int x) throw(char,int,double)
+{
+    if(x == 0)
+    throw 'B';
+    else if(x == 1)
+    throw x;
+    else if(x == 2)
+    throw 1.0;
+    cout<<"End of Try-block"<<endl;
+}
+int main()
+{
+    try{
+        cout<<"Testing throw"<<endl;
+        cout<<"X == 0 "<<endl;
+        test(0);
+        cout<<"X == 1 "<<endl;
+        test(1);
+        cout<<"X == 2 "<<endl;
+        test(2);
+        cout<<"X == 3 "<<endl;
+        test(3);
+    }
+    catch(char c)
+    {
+        cerr<<"Caught a char : "<<c<<endl;
+    }
+    catch(int i)
+    {
+        cerr<<"Caught a int : "<<i<<endl;
+    }
+    catch(double d)
+    {
+        cerr<<"Caught a double : "<<d<<endl;
+    }
+    cout<<"End of Try-catch system"<<endl;
+    return 0;
+}
+*******************************END*******************************************

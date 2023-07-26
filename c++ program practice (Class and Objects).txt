@@ -412,3 +412,733 @@ int main()
     
 }
 **********************************************************************
+//Static data member and Function
+#include <iostream>
+
+using namespace std;
+class stat{
+    int code;
+    static int count;
+    public:
+    stat()
+    {
+        code = ++count;
+    }
+    void showcode()
+    {
+        cout<< "Object number is:"<<code<<endl;
+    }
+    static void showcount()
+    {
+        cout<<"Count Objects: "<<count<<endl;
+    }
+};
+int stat::count=0;
+int main()
+{
+    stat obj1,obj2;
+    obj1.showcount();
+    obj1.showcode();
+    obj2.showcount();
+    obj2.showcode();
+    
+    return 0;
+}
+********************************************************************
+// Passing Object to function
+
+#include <iostream>
+#define PI 3.14
+using namespace std;
+class Circle{
+  float radius;
+  public:
+  void setRadius();
+  void showRadius();
+  float getRadius();
+};
+void Circle::setRadius()
+{
+    cout<<"Enter Radius:";
+    cin >> radius;
+}
+void Circle:: showRadius()
+{
+    cout<<"Radius:"<<radius<<endl;
+}
+float Circle::getRadius()
+{
+    return radius;
+}
+float calArea (Circle c)
+{
+    float ar;
+    ar= PI* c.getRadius()*c.getRadius();
+    return ar;
+}
+int main()
+{
+    Circle c1;
+    c1.setRadius();
+    c1.showRadius();
+    float a = calArea(c1);
+    cout<<"Area of Circle: "<<a;
+}
+*******************************************************************
+// Returning Object from function
+
+#include <iostream>
+#define PI 3.14
+
+using namespace std;
+class Circle{
+  float radius;
+  public:
+  void setRadius();
+  void showRadius();
+  float getRadius();
+};
+void Circle::setRadius()
+{
+    cout<<"Enter radius::";
+    cin>>radius;
+}
+void Circle::showRadius()
+{
+    cout<<"Radius: "<<radius<<endl;
+    
+}
+float Circle::getRadius()
+{
+    return radius;
+}
+Circle createCircle()
+{
+    Circle c;
+    c.setRadius();
+    return c;
+}
+float calArea(Circle c)
+{
+    float ar;
+    ar=PI * c.getRadius()*c.getRadius();
+    return ar;
+}
+int main()
+{
+    Circle c1= createCircle();
+    c1.showRadius();
+    float a=calArea(c1);
+    cout<<"Area of Circle: "<< a;
+    
+}
+********************************************************************
+//Pass Object to Member Function
+#include <iostream>
+using namespace std;
+class Distance{
+  private: 
+  int feet;
+  float inches;
+  public:
+  void getDist()
+  {
+      cout<<"Enter Feet and inches::";
+      cin>> feet >> inches;
+  }
+  void showDist()
+  {
+      cout<< feet<< "\'-" <<inches<<"\"";
+  }
+  void addDist(Distance,Distance);
+};
+void Distance:: addDist(Distance d1,Distance d2)
+{
+    feet = d1.feet + d2.feet;
+    inches = d1.inches + d2.inches;
+    if(inches >= 12.0)
+    {
+        inches -= 12.0;
+        feet++;
+    }
+}
+int main()
+{
+    Distance d1,d2,d3;
+    d1.getDist();
+    d2.getDist();
+    d3.addDist(d1,d2);
+    
+    d1.showDist();
+    cout<<" + ";
+    d2.showDist();
+    cout<<" = ";
+    d3.showDist();
+}
+********************************************************************
+// Return Object from Member Function
+#include <iostream>
+using namespace std;
+
+class Distance{
+  private:
+  int feet;
+  float inches;
+  public:
+  void getDist()
+  {
+      cout<<"Enter Feet and inches::";
+      cin >> feet >> inches;
+  }
+  void showDist()
+  {
+      cout<<feet<<"\'-"<<inches<<"\"";
+  }
+  Distance addDist(Distance);
+};
+Distance Distance:: addDist(Distance d)
+{
+    Distance d1;
+    d1.feet = feet + d.feet;
+    d1.inches = inches + d.inches;
+    if(d1.inches >= 12.0)
+    {
+        d1.inches -= 12.0;
+        d1.feet++;
+    }
+    return d1;
+}
+int main()
+{
+    Distance d1,d2,d3;
+    d1.getDist();
+    d2.getDist();
+    d3=d1.addDist(d2);
+    d1.showDist();
+    cout<<" + ";
+    d2.showDist();
+    cout<<" = ";
+    d3.showDist();
+}
+*********************************************************************
+// Array of objects with constant Member Function
+
+#include <iostream>
+using namespace std;
+const int MAX = 5;
+class Distance{
+  private:
+  int feet;
+  float inches;
+  public:
+  void getDist()
+  {
+      cout<<"Enter Feet and Inches::";
+      cin >> feet >> inches;
+  }
+  void showDist()
+  {
+      cout<<endl<<feet<<"\'-"<<inches<<"\"";
+  }
+  
+};
+int main()
+{
+    Distance d[MAX];
+    for( int i=0; i<MAX;i++)
+    {
+        d[i].getDist();
+    }
+    for(int i=0;i<MAX;i++)
+    {
+        d[i].showDist();
+    }
+}
+
+*******************************************************************************/
+//this pointer
+#include <iostream>
+using namespace std;
+class A{
+  private:
+  int x;
+  public:
+  void showAddress()
+  {
+      cout<<"Address of Object: "<<this<<endl;
+  }
+};
+int main()
+{
+    A a1,a2,a3;
+    a1.showAddress();
+    a2.showAddress();
+    a3.showAddress();
+}
+
+*******************************************************************************/
+//this pointer with simple class
+#include <iostream>
+using namespace std;
+class A{
+  int x;
+  public:
+  void getX()
+  {
+      cout<<"Enter X:: ";
+      cin>>x;
+  }
+  void callGetX()
+  {
+      this->getX();
+  }
+  int showX()
+  {
+      return this->x;
+  }
+};
+int main()
+{
+    A a1;
+    a1.callGetX();
+    cout<< "X = "<<a1.showX();
+}
+
+*******************************************************************************/
+//this Pointer with Distance class
+#include <iostream>
+using namespace std;
+class Distance{
+  int feet;
+  float inches;
+  public:
+  void getDist()
+  {
+      cout<<"Enter Feet & Inches: ";
+      cin >> this->feet >> this->inches;
+  }
+  void showDist()
+  {
+      cout<<this->feet<<"\'-"<<inches<<"\""<<endl;
+  }
+};
+int main()
+{
+    Distance d1,d2;
+    d1.getDist();
+    cout<<"Dist-1: ";
+    d1.showDist();
+    
+    d2.getDist();
+    cout<<"Dist-2: ";
+    d2.showDist();
+}
+*******************************************************************************/
+// Function Overloading
+#include<iostream>
+using namespace std;
+const int pi =3.14;
+class shape{
+    private:
+    float r;
+    int h,w;
+    public:
+    float area(float rd)
+    {
+        r=rd;
+        return (pi*r*r);
+    }
+    int area(int ht,int wt)
+    {
+        h=ht;
+        w=wt;
+        return (h*w);
+    }
+};
+int main()
+{
+    float radius;
+    int weight,height;
+    shape s;
+    cout<< "Enter The radius of circle: "<<endl;
+    cin>>radius;
+    cout<<"Area of circle: "<<s.area(radius)<<endl;
+    cout<<"Enter the height and weight of rectangle:"<<endl;
+    cin>>height>>weight;
+    cout<<"Area of Rectangle: "<<s.area(height,weight);
+}
+*******************************************************************************/
+//Overloading of Member Function
+#include<iostream>
+using namespace std;
+class A{
+  int x;
+  public:
+  void show()
+  {
+      cout<<"X : "<<x<<endl;
+  }
+  void show(int x)
+  {
+      cout<<"X : "<<x<<endl;
+  }
+};
+int main()
+{
+    A a1;
+    a1.show();
+    a1.show(10);
+}
+*******************************************************************************/
+//Nesting of Member Function
+#include <iostream>
+using namespace std;
+class A 
+{
+public:
+    void get()
+    {
+        cout<<"Enter x & y : ";
+        cin>>x>>y;
+    }
+    void showX()
+    {
+        cout<<"X = "<<x;
+    }
+    void showY()
+    {
+        showX();
+        cout<<" Y = "<<y;
+    }
+
+private:
+    int x,y;
+};
+int main()
+{
+    A a1;
+    a1.get();
+    a1.showY();
+}
+
+*******************************************************************************/
+//Global class and local object and global object
+#include <iostream>
+using namespace std;
+//global class
+class A{
+  private: int x;
+  public:
+  void getX()
+  {
+      cout<<"Enter X: ";
+      cin>>x;
+  }
+  void showX()
+  {
+      cout<<"X = "<<x<<endl;
+  }
+};
+A a1; //Global object
+
+int main()
+{
+    A a2;//local object
+    a1.getX();
+    a1.showX();
+    a2.getX();
+    a2.showX();
+}
+*******************************************************************************/
+//Local class 
+#include <iostream>
+using namespace std;
+void fun()
+{
+    // Local class to fun 
+    class test{
+      public:
+      void method()
+      {
+          cout<<"Local class method() called"<<endl;
+      }
+    };
+    test t;
+    t.method();
+}
+int main()
+{
+    fun();
+}
+
+*******************************************************************************/
+//Local class and Local object
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    // local class
+    class A{
+      private :
+      int x;
+      public:
+      void getX()
+      {
+          cout<<"Enter X:";
+          cin>>x;
+      }
+      void showX()
+      {
+          cout<<"X = "<<x<<endl;
+      }
+    };
+    A a1,a2; // local object
+    a1.getX();
+    a1.showX();
+    a2.getX();
+    a2.showX();
+}
+*******************************************************************************/
+//Nested class (using private Inner class)
+#include<iostream>
+using namespace std;
+class Outer{
+  int a;
+  class Inner{
+    int c;
+    public:
+    int d;
+    Inner()
+    {
+     c=30;
+     d=40;
+    }
+    void showInner()
+    {
+        cout<<"Inner:: showInner().";
+        cout<<" "<< c<<" "<<d<<endl;
+    }
+  };
+  Inner obj1;
+  public: 
+  int b;
+  Inner obj2;
+  Outer()
+  {
+      a=10;
+      b=20;
+  }
+  void showOuter()
+  {
+      cout<<"Outer::showOuter().";
+      cout<<a<<" "<<b<<" "<<obj2.d<<endl;
+      obj1.showInner();
+  }
+};
+int main()
+{
+    Outer obj;
+    cout<<"In main "<<obj.b<<" "<<obj.d<<endl;;
+    obj.showOuter();
+    obj.obj2.showInner();
+}
+*******************************************************************************/
+//Nested class (using public Inner class)
+#include<iostream>
+using namespace std;
+class Outer{
+  int a;
+  public:
+  int b;
+  class Inner
+  {
+      int c;
+      public:
+      int d;
+        Inner(){
+            c=30;
+            d=40;
+        }
+        void showInner()
+        {
+            cout<<"Inner :: showInner().";
+            cout<<c<<" "<<d<<endl;
+        }
+  };
+  Inner obj1;
+  Outer()
+  {
+      a=10;
+      b=20;
+  }
+  void showOuter()
+  {
+      cout<<"Outer :: showOuter().";
+      cout<<a<<" "<<b<<" "<<obj1.d<<endl;
+      obj1.showInner();  
+  }
+};
+int main()
+{
+    Outer obj;
+    Outer :: Inner obj2;
+    cout<<"In main(). "<<obj.b<<" "<<obj2.d<<endl;
+    obj.showOuter();
+    obj2.showInner();
+}
+*******************************************************************************/
+// String Class
+
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class String
+{
+	char str[80];
+public:
+	String()
+	{
+		str[0] = '\0';
+	}
+
+	String(char s[ ])
+	{
+		strcpy(str, s);
+	}	
+
+	void display()
+	{
+		cout << str;
+	}
+};
+
+int main()
+{
+	String s1("C++");
+	String s2 = "Programming";
+	String s3("Examples");
+	
+	cout << "\n s1 : "; 
+	s1.display();
+	cout << "\n s2 : "; 
+	s2.display();
+	cout << "\n s3 : "; 
+	s3.display();	
+}
+*******************************************************************************/
+//Concate two string class Objects
+#include <iostream>
+#include <string.h>
+using namespace std;
+const int size =80;
+class String{
+    char str[size];
+    public:
+    String()
+    {
+        strcpy(str, "\0");
+    }
+    String (char s[ ])
+    {
+        strcpy(str, s);
+    }
+    void display()
+    {
+        cout << str;
+    }
+    void concat(String);
+};
+void String:: concat(String s2)
+{
+    if((strlen(str) + strlen(s2.str)) < size) 
+    strcat(str, s2.str);
+    else
+    cout<< "String too long";
+}
+int main()
+{
+    String s1("C++");
+    String s2 = "Programming";
+    String s3("Examples");
+    String s4;
+    
+    cout<<"\n s1 : ";
+    s1.display();
+    cout<<"\n s2 : ";
+    s2.display();
+    cout<<"\n s3 : ";
+    s3.display();
+    
+    s4=s1;
+    s4.concat(s2);
+    cout<<"\n s4 : ";
+    s4.display();
+    
+    s4.concat(s3);
+    cout<<"\n s4 : ";
+    s4.display();
+    
+}
+*******************************************************************************/
+//Concate string class Objects
+#include <iostream>
+#include <string.h>
+using namespace std;
+const int SIZE = 80;
+class String{
+  char str[SIZE];
+  public:
+  String()
+  {
+      strcpy(str, "\0");
+  }
+  String(char s[ ])
+  {
+      strcpy(str, s);
+  }
+  void display()
+  {
+      cout << str;
+  }
+  String concat(String);
+};
+String String:: concat(String s2)
+{
+    String tmp;
+    if(strlen(str) + strlen(s2.str) < SIZE)
+    {
+        strcpy(tmp.str, str);
+        strcat(tmp.str, s2.str);
+    }
+    else
+    {
+        cout<<"String too long";
+    }
+    return tmp;
+}
+int main()
+{
+    String s1("C++");
+    String s2 = "Programming";
+    String s3("Examples");
+    String s4;
+    
+    cout<<"\n S1 : ";
+    s1.display();
+    cout<<"\n S2 : ";
+    s2.display();
+    cout<<"\n S3 : ";
+    s3.display();
+    
+    s4=s1;
+    s4 = s1.concat(s2);
+    cout<<"\n S4 : ";
+    s4.display();
+    
+    s4 = s4.concat(s3);
+    cout<<"\n S4 : ";
+    s4.display();
+}
+*******************************END***************************************

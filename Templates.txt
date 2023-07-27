@@ -1,0 +1,380 @@
+*******************************************************************************/
+//Simple Function template/Generic function
+#include <iostream>
+
+using namespace std;
+
+template<class T>
+void show(T a)
+{
+    cout<<"a = "<<a<<endl;
+}
+int main()
+{
+    show('N');
+    show(10);
+    show(14.54);
+    show("Hello");
+
+    return 0;
+}
+*******************************************************************************/
+//Function template
+#include <iostream>
+
+using namespace std;
+
+template<class T>
+void swap(T a,T b)
+{   
+    T t;
+    t=a;
+    a=b;
+    b=t;
+    cout<<"a = "<<a<< ",b= "<<b<<endl;
+}
+int main()
+{
+    swap(10,20);
+    swap(10.25,20.75);
+    swap('A','B');
+
+    return 0;
+}
+*******************************************************************************/
+//Function Template with multiple parameters
+#include <iostream>
+using namespace std;
+template<class T1,class T2>
+void show(T1 a,T2 b)
+{
+    cout<<"a = "<<a<<" b = "<<b<<endl;
+}
+int main()
+{
+    show(10,'B');
+    show('B',20.75);
+    show(10.25,'B');
+    
+    return 0;
+}
+*******************************************************************************/
+//Overloading of template functions
+#include <iostream>
+using namespace std;
+template<class T1>
+void show(T1 a)
+{
+    cout<<"Template Function:: a = "<<a<<endl;
+}
+void show(int a)
+{
+    cout<<"Simple Function:: a = "<<a<<endl;
+}
+int main()
+{
+    show(23);
+    show('N');
+    show(20.75);
+    show("Hello");
+    
+    return 0;
+}
+*******************************************************************************/
+//Overloading of template functions
+#include <iostream>
+using namespace std;
+template<class T1>
+void show(T1 a)
+{
+    cout<<"Template Function-1:: a = "<<a<<endl;
+}
+template<class T1,class T2>
+void show(T1 a, T2 b)
+{
+    cout<<"Template Function-2:: a = "<<a<<" b = "<<b<<endl;
+}
+int main()
+{
+    show(10);
+    show('N');
+    show(12.34);
+    show("Hello");
+    
+    show(10,12);
+    show('N',4);
+    show(12.34,5);
+    show("Hello",6);
+    
+    return 0;
+}
+*******************************************************************************/
+//create simple class template
+#include <iostream>
+
+using namespace std;
+template<class T>
+class A{
+  private:
+  T x;
+  public:
+  A(){}
+  A(T a)
+  {
+    x=a;
+  }
+  void show()
+  {
+      cout<<"X = "<<x<<endl;
+  }
+  
+};
+int main()
+{
+    A<char> a1('A');
+    a1.show();
+    A<int> a2(10);
+    a2.show();
+    A<float> a3(12.34f);
+    a3.show();
+    A<double> a4(10.25);
+    a4.show();
+
+    return 0;
+}
+*******************************************************************************/
+//class template with multiple paramters
+#include <iostream>
+
+using namespace std;
+template<class T1,class T2>
+class A{
+  private:
+  T1 x;
+  T2 y;
+  public:
+  A(){}
+  A(T1 a, T2 b)
+  {
+    x=a;
+    y=b;
+  }
+  void show()
+  {
+      cout<<"X = "<<x<<" Y = "<<y<<endl;
+  }
+  
+};
+int main()
+{
+    A<char, int> a1('A', 10);
+    a1.show();
+    A<int, float> a2(10, 12.34f);
+    a2.show();
+    A<float, char> a3(12.34f, 'B');
+    a3.show();
+    A<double, int> a4(10.25, 20);
+    a4.show();
+
+    return 0;
+}
+*******************************************************************************/
+//class template with multiple paramters
+#include <iostream>
+
+using namespace std;
+template<class T1,class T2>
+class A{
+  private:
+  T1 x;
+  T2 y;
+  public:
+  A(){}
+  A(T1 a, T2 b)
+  {
+    x=a;
+    y=b;
+  }
+  void show()
+  {
+      cout<<"X = "<<x<<" Y = "<<y<<endl;
+  }
+  T1 getX()
+  {
+      return x;
+  }
+  T2 getY()
+  {
+      return y;
+  }
+  
+};
+int main()
+{
+    A<char, int> a1('A', 10);
+    a1.show();
+    cout<<"x : "<<a1.getX()<<endl;
+    cout<<"y : "<<a1.getY()<<endl;
+    A<int, float> a2(10, 12.34f);
+    a2.show();
+    cout<<"x : "<<a2.getX()<<endl;
+    cout<<"y : "<<a2.getY()<<endl;
+    A<float, char> a3(12.34f, 'B');
+    a3.show();
+    cout<<"x : "<<a3.getX()<<endl;
+    cout<<"y : "<<a3.getY()<<endl;
+    A<double, int> a4(10.25, 20);
+    a4.show();
+    cout<<"x : "<<a4.getX()<<endl;
+    cout<<"y : "<<a4.getY()<<endl;
+    
+    return 0;
+}
+*******************************************************************************/
+//Template Member Function
+#include <iostream>
+
+using namespace std;
+template<class T>
+class A{
+  private:
+  T x;
+  public:
+  A();
+  A(T a);
+  void show();
+};
+template<class T>
+A<T>::A()
+{ }
+template<class T>
+A<T>::A(T a)
+{
+    x=a;
+}
+template<class T>
+void A<T>:: show()
+{
+    cout<<"X = "<<x<<endl;
+}
+
+int main()
+{
+    A<char> a1('B');
+    a1.show();
+    A<int> a2(10);
+    a2.show();
+    A<float> a3(12.34f);
+    a3.show();
+    A<double> a4(14.54);
+    a4.show();
+    return 0;
+}
+*******************************************************************************/
+//Template Member Function with multiple template parameters
+#include <iostream>
+
+using namespace std;
+template<class T1,class T2>
+class A{
+  private:
+  T1 x;
+  T2 y;
+  public:
+  A();
+  A(T1 a, T2 b);
+  void show();
+  T1 getX();
+  T2 getY();
+};
+template<class T1, class T2>
+A<T1,T2>::A()
+{ }
+template<class T1, class T2>
+A<T1,T2>::A(T1 a, T2 b)
+{
+    x=a;
+    y=b;
+}
+template<class T1, class T2>
+void A<T1,T2>:: show()
+{
+    cout<<"X = "<<x<<" Y = "<<y<<endl;
+}
+template<class T1,class T2>
+T1 A<T1,T2>::getX()
+{
+    return x;
+}
+template<class T1,class T2>
+T2 A<T1,T2>::getY()
+{
+    return y;
+}
+int main()
+{
+    A<char, int> a1('A', 10);
+    a1.show();
+    cout<<"x : "<<a1.getX()<<endl;
+    cout<<"y : "<<a1.getY()<<endl;
+    A<int, float> a2(10, 12.34f);
+    a2.show();
+    cout<<"x : "<<a2.getX()<<endl;
+    cout<<"y : "<<a2.getY()<<endl;
+    A<float, char> a3(12.34f, 'B');
+    a3.show();
+    cout<<"x : "<<a3.getX()<<endl;
+    cout<<"y : "<<a3.getY()<<endl;
+    A<double, int> a4(10.25, 20);
+    a4.show();
+    cout<<"x : "<<a4.getX()<<endl;
+    cout<<"y : "<<a4.getY()<<endl;
+    
+    return 0;
+}
+*******************************************************************************/
+//template class with non-type template arguments
+#include <iostream>
+using namespace std;
+
+template<class T,int size>
+class A
+{
+  private:
+  T x[size];
+  public:
+  A(){}
+  A(T a[])
+  {
+      for(int i=0;i<size;i++)
+      {
+          x[i]=a[i];
+      }
+  }
+  void show()
+  {
+      for(int i=0;i<size;i++)
+      {
+          cout<<" "<<x[i];
+      }
+      cout<<endl;
+  }
+};
+int main()
+{
+    char ch[] = {'A','B','C'};
+    A<char,3> a1(ch);
+    a1.show();
+    int i[ ] = {10,20,30,40,50};
+    A<int,5> a2(i);
+    a2.show();
+    
+    float f[ ] = {1.2,2.3,3.4,4.5};
+    A<float,4> a3(f);
+    a3.show();
+    
+    double d[ ] = {10.20,40.50};
+    A<double,2> a4(d);
+    a4.show();
+}
+*****************************END******************************************

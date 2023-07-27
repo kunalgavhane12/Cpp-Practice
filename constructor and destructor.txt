@@ -1,0 +1,816 @@
+*******************************************************************************/
+//Simple Constructor
+#include <iostream>
+
+using namespace std;
+class demo{
+  public:
+  demo()
+  {
+      cout<<"This is Constructor...!"<<endl;
+      cout<<"This is called without Object..!";
+  }
+};
+int main()
+{
+    demo d;
+
+    return 0;
+}
+*******************************************************************************/
+//Default constructor 
+#include <iostream>
+#define PI 3.14
+using namespace std;
+
+class Circle{
+  float radius;
+  public:
+  Circle();
+  void getRadius();
+  void showRadius();
+  float area();
+};
+Circle :: Circle()
+{
+    radius=10;
+}
+void Circle :: getRadius()
+{
+    cout<<"Enter Radius:: ";
+    cin>>radius;
+}
+float Circle :: area()
+{
+    float ar;
+    ar=PI*radius*radius;
+    return ar;
+}
+void Circle :: showRadius()
+{
+    cout<<"Radius : "<<radius<<endl;
+}
+
+int main()
+{
+    Circle c1;
+    c1.showRadius();
+    float a= c1.area();
+    cout<<"Area of Circle : "<<a<<endl;
+    return 0;
+}
+*******************************************************************************/
+//Parameterized constructor
+#include <iostream>
+using namespace std;
+class Volume{
+  int lenght,breadth,height;
+  public:
+  Volume(int l,int b,int h)
+  {
+      lenght = l;
+      breadth = b;
+      height = h;
+      cout<<"lenght of rectangle is: "<<lenght<<endl;
+      cout<<"breadth of rectangle is: "<<breadth<<endl;
+      cout<<"height of rectangle is: "<<height<<endl;
+  }
+  void display()
+  {
+      cout<<"Volume of rectangle is : "<<lenght*breadth*height;
+  }
+};
+int main()
+{
+    Volume a(5,10,10);
+    a.display();
+}
+*******************************************************************************/
+//Parameterized constructor
+#include <iostream>
+using namespace std;
+class Volume{
+  int lenght,breadth,height;
+  public:
+  Volume(int l,int b,int h)
+  {
+      lenght = l;
+      breadth = b;
+      height = h;
+      cout<<"lenght of rectangle is: "<<lenght<<endl;
+      cout<<"breadth of rectangle is: "<<breadth<<endl;
+      cout<<"height of rectangle is: "<<height<<endl;
+  }
+  void display()
+  {
+      cout<<"Volume of rectangle is : "<<lenght*breadth*height;
+  }
+};
+int main()
+{
+    Volume a(5,10,10);
+    a.display();
+}
+*******************************************************************************/
+//Constructor Overloading
+#include <iostream>
+#define PI 3.14
+using namespace std;
+class Circle
+{
+  float radius;
+  public:
+  Circle();
+  Circle(float);
+  void getRadius();
+  float area();
+  void showRadius();
+};
+Circle :: Circle()
+{
+    radius=10;
+}
+Circle :: Circle(float r)
+{
+    radius=r;    
+}
+void Circle::getRadius()
+{
+    cout<< "Enter Radius :";
+    cin>>radius;
+}
+void  Circle:: showRadius()
+{
+    cout<<"Radius : "<<radius<<endl;
+}
+float Circle::area()
+{
+    float ar;
+    ar=PI*radius*radius;
+    return ar;
+}
+int main()
+{
+    Circle c1(10);
+    c1.showRadius();
+    float a= c1.area();
+    cout<<"Area of Circle : "<<a<<endl;
+}
+*******************************************************************************/
+//Copy Constructor
+#include <iostream>
+using namespace std;
+class code{
+  int id;
+  public:
+  code(){} // Constructor
+  code(int a)//parameterize Constructor
+  {
+      id=a;
+  }
+  code (code &x) //copy Constructor
+  {
+      id=x.id;
+  }
+  void display()
+  {
+      cout<<id<<endl;
+  }
+};
+int main()
+{
+    code A(100); // Object A is created and initialized 
+    code B(A); // copy Constructor called.
+    code C=A; // copy Constructor called again.
+    code D; // D is created, not initialized
+    D=A;
+    cout<<"Id of A: ";
+    A.display();
+    cout<<"Id of B: ";
+    B.display();
+    cout<<"Id of C: ";
+    C.display();
+    cout<<"Id of D: ";
+    D.display();
+    
+}
+*******************************************************************************/
+//Copy constructor and constructor overloading
+
+#include <iostream>
+#define PI 3.14
+using namespace std;
+class Circle{
+  float radius;
+  public:
+  Circle();
+  Circle(float);
+  Circle(Circle&);
+  void getRadius();
+  float area();
+  void showRadius();
+};
+Circle :: Circle()
+{   cout<<"Default constructor Called"<<endl;
+    radius=10;
+}
+Circle :: Circle(float r)
+{
+    cout<<"Parameterized constructor called"<<endl;
+    radius=r;
+}
+Circle :: Circle(Circle &x)
+{
+    cout<<"Copy constructor called"<<endl;
+    radius=x.radius;
+}
+void Circle::getRadius()
+{
+    cout<<"Enter radius: ";
+    cin>>radius;
+}
+void Circle::showRadius()
+{
+    cout<<"Radius : "<<radius<<endl;
+}
+float Circle :: area()
+{
+    float ar;
+    ar = PI * radius * radius;
+    return ar;
+}
+int main()
+{
+    Circle c1(10);
+    Circle c2(c1);
+    
+    c2.showRadius();
+    float a= c2.area();
+    cout<<"Area of Circle : "<<a<<endl;
+}
+*******************************************************************************/
+//Default Copy constructor created by Compiler
+#include <iostream>
+using namespace std;
+class Distance{
+  int feet;
+  float inches;
+  public:
+  Distance()
+  {
+      feet = 0;
+      inches = 0.0;
+  }
+  Distance(int ft, float in)
+  {
+      feet = ft;
+      inches = in;
+  }
+  void showDist()
+  {
+      cout<<feet<<"\'-"<<inches<<"\""<<endl;
+  }
+};
+int main()
+{
+    Distance d1(10,6.0); //paramtereized constructor called.
+    Distance d2(d1); // Copy constructor called.
+    Distance d3 = d1;//  Copy constructor called.
+    cout<<"Dist-1 : ";
+    d1.showDist();
+    cout<<"Dist-2 : ";
+    d2.showDist();
+    cout<<"Dist-3 : ";
+    d3.showDist();
+}
+*******************************************************************************/
+//Dynamic Initialization of object
+#include <iostream>
+using namespace std;
+class A{
+  int x;
+  public:
+  A(int a)
+  {
+      x=a;
+  }
+  void showX()
+  {
+      cout<<"X = "<<x<<endl;
+  }
+};
+int main()
+{
+    int a;
+    cout<<"Enter a number :";
+    cin>>a;
+    A a1(a);
+    a1.showX();
+}
+*******************************************************************************/
+//Constructor with default argument
+#include <iostream>
+using namespace std;
+class A{
+  int x;
+  public:
+  A(int a=10)
+  {
+      x=a;
+  }
+  void showX()
+  {
+      cout<< "X = "<<x<<endl;
+  }
+};
+int main()
+{
+    A a1;
+    A a2(100);
+    a1.showX();
+    a2.showX();
+}
+*******************************************************************************/
+//Nameless object example
+#include <iostream>
+using namespace std;
+class A{
+  int x;
+  public:
+  A(int a=10)
+  {
+      x=a;
+  }
+  void showX()
+  {
+      cout<< "X = "<<x<<endl;
+  }
+};
+int main()
+{
+    A().showX();
+    A(100).showX();
+}
+*******************************************************************************/
+//Access method by explicity and implicity call.
+#include <iostream>
+using namespace std;
+class ObjectMethod{
+  int a,b;
+  public:
+  ObjectMethod(int,int);
+  void display()
+  {
+      cout<<"A : "<<a<<endl;
+      cout<<"B : "<<b<<endl;
+  }
+};
+ObjectMethod :: ObjectMethod(int x, int y)
+{
+    a=x;
+    b=y;
+}
+int main()
+{
+    ObjectMethod obj1=ObjectMethod(23,95);
+    ObjectMethod obj2(41,77);
+    cout<<"Call by implicity:: "<<endl;
+    obj1.display();
+    cout<<"Call by explicity:: "<<endl;
+    obj2.display();
+}
+*******************************************************************************/
+//Explicit constructor calling
+#include <iostream>
+using namespace std;
+class Distance{
+  int feet;
+  float inches;
+  public:
+  Distance()
+  {
+      feet = 0;
+      inches = 0.0;
+  }
+  Distance(int ft,float in)
+  {
+      feet = ft;
+      inches = in;
+  }
+  void showDist()
+  {
+    cout<<feet<<"\'-"<<inches<<"\""<<endl;   
+  }
+};
+int main()
+{
+    Distance d1 = Distance();
+    Distance d2 = Distance();
+    Distance d3 = Distance(10,6.0);
+    
+    cout<<"Dist-1 :";
+    d1.showDist();
+    cout<<"Dist-2 :";
+    d2.showDist();
+    cout<<"Dist-3 :";
+    d3.showDist();
+}
+*******************************************************************************/
+//Different technique to initialize Data Members in constructor
+#include <iostream>
+using namespace std;
+class Distance{
+  int feet;
+  float inches;
+  public:
+  Distance():feet(0),inches(0.0){}
+  Distance (int ft,float in) : feet(ft),inches(in){}
+  void getDist()
+  {
+      cout<<"Enter feet & inches: ";
+      cin >> feet >> inches;
+  }
+  void showDist()
+  {
+      cout<<feet<<"\'-"<<inches<<"\""<<endl;
+  }
+};
+int main()
+{
+    Distance d1,d2;
+    d2.getDist();
+    Distance d3(10,6.0);
+    cout<<"Dist-1 : ";
+    d1.showDist();
+    cout<<"Dist-2 : ";
+    d2.showDist();
+    cout<<"Dist-3 : ";
+    d3.showDist();
+}
+*******************************************************************************/
+//use copy constructor
+#include <iostream>
+using namespace std;
+class Distance{
+  int feet;
+  float inches;
+  public:
+  Distance(): feet(0), inches(0.0){}
+  Distance(int ft,float in) : feet(ft), inches(in){}
+  Distance (Distance &d) : feet(d.feet),inches(d.inches){}
+  
+  void showDist()
+  {
+      cout<<feet<<"\'-"<<inches<<"\""<<endl;
+  }
+};
+int main()
+{
+    Distance d1(10,5.5);
+    Distance d2(d1);
+    Distance d3 = d1;
+    
+    cout<<"Dist-1 : ";
+    d1.showDist();
+    cout<<"Dist-2 : ";
+    d2.showDist();
+    cout<<"Dist-3 : ";
+    d3.showDist();
+}
+*******************************************************************************/
+//use copy constructor
+#include <iostream>
+using namespace std;
+class Distance{
+  int feet;
+  float inches;
+  public:
+  Distance(): feet(0), inches(0.0){}
+  Distance(int ft,float in) : feet(ft), inches(in){}
+  Distance (Distance &d) : feet(d.feet),inches(d.inches){}
+  
+  void showDist()
+  {
+      cout<<feet<<"\'-"<<inches<<"\""<<endl;
+  }
+};
+int main()
+{
+    Distance d1(10,5.5);
+    Distance d2(d1);
+    Distance d3 = d1;
+    
+    cout<<"Dist-1 : ";
+    d1.showDist();
+    cout<<"Dist-2 : ";
+    d2.showDist();
+    cout<<"Dist-3 : ";
+    d3.showDist();
+}
+*******************************************************************************/
+//Default constructor with counter
+#include <iostream>
+using namespace std;
+class Counter{
+  int count;
+  public:
+  Counter():count(0){}
+  void inc_Count()
+  {
+      count++;
+  }
+  int getcount()
+  {
+    return count; 
+  }
+};
+int main()
+{
+    Counter c1,c2;
+    cout<<"c1 Count :"<<c1.getcount()<<endl;
+    cout<<"c2 coutn :"<<c2.getcount()<<endl;
+    
+    c1.inc_Count();
+    c2.inc_Count();
+    c2.inc_Count();
+    
+    cout<<"C1 count : "<<c1.getcount()<<endl;
+    cout<<"C2 count : "<<c2.getcount()<<endl;
+    
+}
+*******************************************************************************/
+//Destructor 
+#include <iostream>
+using namespace std;
+class myclass{
+  private:
+  int t;
+  public:
+  myclass()
+  {
+      cout<<"This is a constructor"<<endl;
+  }
+  ~myclass()
+  {
+      cout<<"This is a Destructor"<<endl;
+  }
+  void set(int d)
+  {
+      t=d;
+  }
+  void show()
+  {
+      cout<<t<<endl;
+  }
+};
+int main()
+{
+    myclass m1,m2;
+    m1.set(2);
+    m2.set(6);
+    m1.show();
+    m2.show();
+}
+*******************************************************************************/
+//Destructor example
+#include <iostream>
+using namespace std;
+int  count=0;
+class dest{
+  public:
+  dest()
+  {
+      count++;
+      cout<<"Constructor :"<<count<<endl;
+  }
+  ~dest()
+  {
+      cout<<"Destructor :"<<count<<endl;
+      count--;
+  }
+};
+int main()
+{
+    cout<<"Main scope:"<<endl;
+    dest d1,d2,d3,d4;
+    {
+        cout<<"Inner Block1"<<endl;
+        dest d5,d6;
+    }
+    {
+        cout<<"Inner Block2"<<endl;
+        dest d7;
+    }
+    cout<<"Main scope"<<endl;
+}
+*******************************************************************************/
+//Order of Constructor and Destructor Invocation(calling)
+#include <iostream>
+using namespace std;
+class A{
+  int x;
+  static int y;
+  public:
+  A()
+  {
+      y++;
+      x=y;
+      cout<<"Constructor - "<<x<<endl;
+  }
+  ~A()
+  {
+      cout<<"Destructor - "<<x<<endl;
+  }
+};
+int A:: y=0;
+int main()
+{
+    A a1,a2;
+    {
+        A a3;
+    }
+    A a4,a5;
+    {
+        A a6,a7;
+    }
+    A a8;
+}
+*******************************************************************************/
+//Friend class
+#include <iostream>
+using namespace std;
+class A{
+  int x;
+  public:
+  A()
+  {
+      x=10;
+  }
+  friend class B;
+};
+class B{
+  public:
+  void show1(A a)
+  {
+      cout<<"x = "<<a.x<<endl;
+  }
+  void show2(A a)
+  {
+      cout<<"x = "<<a.x<<endl;
+  }
+  void show3(A a)
+  {
+      cout<<"x = "<<a.x<<endl;
+  }
+  
+};
+int main()
+{
+    A a1;
+    B b1;
+    b1.show1(a1);
+    b1.show2(a1);
+    b1.show3(a1);
+}
+*******************************************************************************/
+//Friend function
+#include <iostream>
+using namespace std;
+class B;
+class A{
+  int x;
+  public:
+  A()
+  {
+      x=10;
+  }
+  friend int add(A,B);
+};
+class B{
+  int y;
+  public:
+  B()
+  {
+      y=20;
+  }
+  friend int add(A,B);
+};
+int add (A a,B b)
+{
+    return ( a.x+b.y);
+}
+int main()
+{
+    A a1;
+    B b1;
+    cout << "Sum : "<<add(a1,b1);
+}
+*******************************************************************************/
+//Calling of member function without functional notation of c-language
+#include <iostream>
+using namespace std;
+class Distance{
+  int feet;
+  float inches;
+  public:
+  Distance()
+  {
+      feet = 0;
+      inches = 0.0;
+  }
+  Distance(int ft,float in)
+  {
+      feet=ft;
+      inches=in;
+  }
+  Distance(float f)
+  {
+      feet = int(f);
+      inches = 12 * (f-feet);
+  }
+  void getDist()
+  {
+      cout<<"Enter feet & inches:";
+      cin>>feet>>inches;
+  }
+  void showDist()
+  {
+      cout<<feet<<"\'-"<<inches<<"\""<<endl;
+  }
+  Distance square();
+};
+Distance Distance:: square()
+{
+    Distance d;
+    float ft = feet + inches/12.0;
+    ft = ft * ft;
+    d.feet = int(ft);
+    d.inches = 12 * (ft - d.feet);
+    return d;
+}
+int main()
+{
+    Distance d1(12,9.0);
+    Distance d2;
+    cout<<"d1 : ";
+    d1.showDist();
+    d2 = d1.square();
+    cout<<"d2 : ";
+    d2.showDist();
+    
+}
+*******************************************************************************/
+//Calling of member function without functional notation of c-language (friend function)
+#include <iostream>
+using namespace std;
+class Distance{
+  int feet;
+  float inches;
+  public:
+  Distance()
+  {
+      feet = 0;
+      inches = 0.0;
+  }
+  Distance(int ft,float in)
+  {
+      feet=ft;
+      inches=in;
+  }
+  Distance(float f)
+  {
+      feet = int(f);
+      inches = 12 * (f-feet);
+  }
+  void getDist()
+  {
+      cout<<"Enter feet & inches:";
+      cin>>feet>>inches;
+  }
+  void showDist()
+  {
+      cout<<feet<<"\'-"<<inches<<"\""<<endl;
+  }
+    friend Distance square(Distance);
+};
+Distance square(Distance x)
+{
+    Distance d;
+    float ft = x.feet + x.inches/12.0;
+    ft = ft * ft;
+    d.feet = int(ft);
+    d.inches = 12 * (ft - d.feet);
+    return d;
+}
+int main()
+{
+    Distance d1(12,9.0);
+    Distance d2;
+    cout<<"d1 : ";
+    d1.showDist();
+    d2 = square(d1);
+    cout<<"d2 : ";
+    d2.showDist();
+    
+}
+******************************END*************************************	

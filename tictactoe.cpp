@@ -18,7 +18,7 @@ int main()
         player = (player%2==0) ? 2 : 1;
         char mark = (player == 1) ? 'X' : 'O';
         cout << "Please enter Number for player: "<< player << endl;
-        INPUT: cin >> input;
+        cin >> input;
         
         if(input < 1 || input >9)
         {
@@ -30,7 +30,7 @@ int main()
         }else
         {
             cout <<"Already filled.Please choose another Number: "<<endl;
-            goto INPUT;
+            continue;
         }
        
         printBorad();

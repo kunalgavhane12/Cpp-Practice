@@ -1,0 +1,1342 @@
+*******************************************************************************/
+//Single Inheritance
+#include <iostream>
+
+using namespace std;
+class Base{
+  protected:
+  int val;
+  public:
+  void setData(int v)
+  {
+      val = v;
+  }
+};
+class Derived: public Base{
+  public:
+  void Cube()
+  {
+      cout<<"Cube of " <<val<<" is:"<<val*val*val<<endl;
+  }
+};
+int main()
+{
+    Derived d;
+    d.setData(10);
+    d.Cube();
+
+    return 0;
+}
+*******************************************************************************/
+//Single Inheritance
+#include <iostream>
+
+using namespace std;
+class A{
+  int x;
+  public:
+  void getX()
+  {
+      cout<<"Enter X:";
+      cin>>x;
+  }
+  void showX()
+  {
+      cout<<"X = "<<x<<endl;
+  }
+};
+class B:public A{
+  int y;
+  public:
+  void getY()
+  {
+      cout<<"Enter Y:";
+      cin>>y;
+  }
+  void showY()
+  {
+      cout<<"Y = "<<y<<endl;
+  }
+};
+int main()
+{
+    B d;
+    d.getX();
+    d.showX();
+    d.getY();
+    d.showY();
+
+    return 0;
+}
+*******************************************************************************/
+//Multiple Inheritance
+#include <iostream>
+
+using namespace std;
+class Area{
+  public:
+  float area_cal(float l,float b)
+  {
+      return l*b;
+  }
+};
+class Perimeter{
+  public:
+  float peri_cal(float l,float b)
+  {
+      return 2*(l+b);
+  }
+};
+class Rectangle: public Area,public Perimeter{
+  float length, breadth;
+  public:
+  Rectangle():length(0.0),breadth(0.0){}
+  void get_data()
+  {
+      cout<<"Enter length and breadth:";
+      cin>>length>>breadth;
+  }
+  float area_cal()
+  {
+      return Area::area_cal(length,breadth);
+  }
+  float peri_cal()
+  {
+      return Perimeter::peri_cal(length,breadth);
+  }
+};
+int main()
+{
+    Rectangle r;
+    r.get_data();
+    cout<<"Area = "<<r.area_cal()<<endl;
+    cout<<"Perimeter = "<<r.peri_cal()<<endl;
+    return 0;
+}
+*******************************************************************************/
+//Multiple inheritance
+#include <iostream>
+
+using namespace std;
+class A{
+  int x;
+  public:
+  void getX()
+  {
+      cout<<"Enter X:";
+      cin>>x;
+  }
+  void showX()
+  {
+      cout<<"X : "<<x<<endl;
+  }
+};
+class B{
+  int y;
+  public:
+  void getY()
+  {
+      cout<<"Enter Y:";
+      cin>>y;
+  }
+  void showY()
+  {
+      cout<<"Y : "<<y<<endl;
+  }
+};
+class C:public A, public B{
+  int z;
+  public:
+  void getZ()
+  {
+      cout<<"Enter z: ";
+      cin>>z;
+  }
+  void showZ()
+  {
+      cout<<"Z : "<<z<<endl;
+  }
+};
+int main()
+{
+    C d;
+    d.getX();
+    d.getY();
+    d.getZ();
+    
+    d.showX();
+    d.showY();
+    d.showZ();
+
+    return 0;
+}
+*******************************************************************************/
+//Hierarchical Inherotance
+#include <iostream>
+
+using namespace std;
+class A{
+  public:
+  int a,b;
+  void getNumber()
+  {
+      cout<<"Enter number:";
+      cin>>a;
+  }
+};
+class B: public A{
+  public:
+  void square()
+  {
+      getNumber();
+      cout<<"Square of the Number:: "<<(a*a)<<endl;
+  }
+};
+class C:public A{
+  public:
+  void cube()
+  {
+      getNumber();
+      cout<<"Cube of Number:: "<<(a*a*a)<<endl;
+  }
+};
+int main()
+{
+    B b1;
+    C c1;
+    b1.square();
+    c1.cube();
+    
+    return 0;
+}
+*******************************************************************************/
+//hierarchical inheritacne
+#include <iostream>
+
+using namespace std;
+class A{
+  int x;
+  public:
+  void getX()
+  {
+      cout<<"Enter X:";
+      cin>>x;
+  }
+  void showX()
+  {
+      cout<<"X : "<<x<<endl;
+  }
+};
+class B: public A{
+  int y;
+  public:
+  void getY()
+  {
+      cout<<"Enter Y:";
+      cin>>y;
+  }
+  void showY()
+  {
+      cout<<"Y : "<<y<<endl;
+  }
+};
+class C: public A{
+    int z;
+    public:
+    void getZ()
+    {
+        cout<<"Enter Z:";
+        cin>>z;
+    }
+    void showZ()
+    {
+        cout<<"Z : "<<z<<endl;
+    }
+};
+int main()
+{
+    B b1;
+    C c1;
+    b1.getX();
+    b1.getY();
+    c1.getX();
+    c1.getZ();
+   
+    b1.showX();
+    b1.showY();
+    c1.showX();
+    c1.showZ();
+
+    return 0;
+}
+*******************************************************************************/
+//Multilevel inheritacne
+#include <iostream>
+
+using namespace std;
+class A{
+  int x;
+  public:
+  void getX()
+  {
+      cout<<"Enter X:";
+      cin>>x;
+  }
+  void showX()
+  {
+      cout<<"X : "<<x<<endl;
+  }
+};
+class B: public A{
+  int y;
+  public:
+  void getY()
+  {
+      cout<<"Enter Y:";
+      cin>>y;
+  }
+  void showY()
+  {
+      cout<<"Y : "<<y<<endl;
+  }
+};
+class C: public B{
+    int z;
+    public:
+    void getZ()
+    {
+        cout<<"Enter Z:";
+        cin>>z;
+    }
+    void showZ()
+    {
+        cout<<"Z : "<<z<<endl;
+    }
+};
+int main()
+{
+    C c1;
+    c1.getX();
+    c1.getY();
+    c1.getX();
+    c1.getZ();
+   
+    c1.showX();
+    c1.showY();
+    c1.showX();
+    c1.showZ();
+
+    return 0;
+}
+*******************************************************************************/
+//Multilevel inheritacne
+#include <iostream>
+
+using namespace std;
+class Top{
+  public:
+  int x;
+  void getdata()
+  {
+      cout<<"Enter Number:";
+      cin>>x;
+  }
+  void putdata()
+  {
+      cout<<"Number is: "<<x<<endl;
+  }
+};
+class Middle: public Top{
+  public:
+  int y;
+  void square()
+  {
+      getdata();
+      y=x*x;
+      cout<<"Square:: "<<y<<endl;
+  }
+};
+class Bottom: public Middle{
+    public:
+    int z;
+    void cube()
+    {
+        square();
+        z=y*x;
+        cout<<"Cube:: "<<z<<endl;
+    }
+};
+int main()
+{
+    Bottom b1;
+    b1.cube();
+    return 0;
+}
+*******************************************************************************/
+//Hybrid Inheritance
+#include <iostream>
+
+using namespace std;
+int a,b,c,d,e;
+class A{
+  public:
+  void getab()
+  {
+      cout<<"Enter a:";
+      cin>>a;
+      cout<<"Enter b:";
+      cin>>b;
+  }
+};
+class B : public A{
+    public:
+    void getC()
+    {
+        cout<<"Enter c:";
+        cin>>c;
+    }
+};
+class C{
+  public:
+  void getd()
+  {
+    cout<<"Enter d:";
+    cin>>d;
+  }
+};
+class D : public B, public C{
+  public:
+  void result()
+  {
+      getab();
+      getC();
+      getd();
+      e=a+b+c+d;
+      cout<<"Addition is :"<<e<<endl;
+      
+  }
+};
+int main()
+{
+    D d1;
+    d1.result();
+    return 0;
+}
+*******************************************************************************/
+//Hybrid Inheritance
+#include <iostream>
+
+using namespace std;
+class A{
+  int x;
+  public:
+  void getX()
+  {
+      cout<<"Enter X:";
+      cin>>x;
+  }
+  void showX()
+  {
+      cout<<"X : "<<x<<endl;
+  }
+};
+class B : public A{
+    int y;
+    public:
+    void getY()
+    {
+       cout<<"Enter Y:";
+       cin>>y;
+    }
+    void showY()
+    {
+       cout<<"Y : "<<y<<endl;
+    }
+};
+class C: public A{
+    int z;
+    public:
+    void getZ()
+    {
+       cout<<"Enter Z:";
+       cin>>z;
+    }
+    void showZ()
+    {
+       cout<<"Z : "<<z<<endl;
+    }
+};
+class D : public B, public C{
+    int w;
+    public:
+    void getW()
+    {
+       cout<<"Enter W:";
+       cin>>w;
+    }
+    void showW()
+    {
+       cout<<"W : "<<w<<endl;
+    }
+};
+int main()
+{
+    D d1;
+    //d1.getX();//Error ambigous
+    d1.B::getX();
+    d1.C::getX();
+    d1.getY();
+    d1.getZ();
+    d1.getW();
+    
+    //d1.showX();//Error ambigous
+    d1.B::showX();
+    d1.C::showX();
+    d1.showY();
+    d1.showZ();
+    d1.showW();
+    return 0;
+}
+*******************************************************************************/
+//public Visibilty Mode
+#include <iostream>
+
+using namespace std;
+class A{
+  int x;
+  public:
+  void getX()
+  {
+      cout<<"Enter X:";
+      cin>>x;
+  }
+  void showX()
+  {
+      cout<<"X = "<<x<<endl;
+  }
+};
+class B:public A{
+  int y;
+  public:
+  void getY()
+  {
+      cout<<"Enter Y:";
+      cin>>y;
+  }
+  void showY()
+  {
+      cout<<"Y = "<<y<<endl;
+  }
+};
+int main()
+{
+    B d;
+    d.getX();
+    d.showX();
+    d.getY();
+    d.showY();
+
+    return 0;
+}
+*******************************************************************************/
+//protected Visibility Mode
+#include <iostream>
+
+using namespace std;
+class A{
+  int x;
+  public:
+  void getX()
+  {
+      cout<<"Enter X :";
+      cin>>x;
+  }
+  void showX()
+  {
+      cout<<"X : "<<x<<endl;
+  }
+};
+class B: protected A{
+    int y;
+    public:
+    void getY()
+    {
+        getX();
+        cout<<"Enter Y : ";
+        cin>>y;
+    }
+    void showY()
+    {
+        showX();
+        cout<<"Y : "<<y<<endl;
+    }
+};
+
+int main()
+{
+    B b1;
+    b1.getY();
+    b1.showY();
+
+    return 0;
+}
+*******************************************************************************/
+//private Visibility Mode
+#include <iostream>
+
+using namespace std;
+class A{
+  int x;
+  public:
+  void getX()
+  {
+      cout<<"Enter X :";
+      cin>>x;
+  }
+  void showX()
+  {
+      cout<<"X : "<<x<<endl;
+  }
+};
+class B: private A{
+    int y;
+    public:
+    void getY()
+    {
+        getX();
+        cout<<"Enter Y : ";
+        cin>>y;
+    }
+    void showY()
+    {
+        showX();
+        cout<<"Y : "<<y<<endl;
+    }
+};
+
+int main()
+{
+    B b1;
+    b1.getY();
+    b1.showY();
+
+    return 0;
+}*******************************************************************************/
+//Single inheritance in private mode
+#include <iostream>
+
+using namespace std;
+class Base 
+{
+    protected:
+    int val;
+    public:
+    void setData(int v)
+    {
+        val=v;
+    }
+    int getData()
+    {
+        return val;
+    }
+};
+class Derived : private Base{
+  public:
+  void cube()
+  {
+      cout<<"Cube of "<<val<<" is:"<<getData()*getData()*getData();
+  }
+};
+int main()
+{
+    Derived d;
+    //d.setData(10);// error: ‘void Base::setData(int)’ is inaccessible within this context
+    d.cube();
+
+    return 0;
+}
+*******************************************************************************/
+//Funtion Overriding
+#include <iostream>
+
+using namespace std;
+class Base 
+{
+    private:
+    int val;
+    public:
+    Base()
+    {
+        val=0;
+        cout<<"Base Default Constructor\n";
+    }
+    Base(int a)
+    {
+        val=a;
+        cout<<"Base Parameterize Constructor\n";
+    }
+    void show()
+    {
+        cout<<"Val : "<<val<<endl;
+    }
+};
+class Derived : public Base{
+  private :
+  int val2;
+  public:
+  Derived() : Base()
+  {
+      val2=0;
+      cout<<"Derived Default Constructor\n";
+  }
+  Derived(int a,int b) : Base(a)
+  {
+      val2=b;
+      cout<<"Derived Parameterize Constructor\n";
+  }
+  void show()
+  {
+      cout<<"Val2 : "<<val2<<endl;
+  }
+};
+int main()
+{
+    Derived d(10,20);
+    d.show();
+
+    return 0;
+}
+*******************************************************************************/
+//Funtion Overriding 2
+#include <iostream>
+
+using namespace std;
+class Base 
+{
+    private:
+    int x;
+    public:
+    Base()
+    {
+        x=0;
+        cout<<"Base Default Constructor\n";
+    }
+    Base(int a)
+    {
+        x=a;
+        cout<<"Base Parameterize Constructor\n";
+    }
+    void show()
+    {
+        cout<<"X : "<<x<<endl;
+    }
+};
+class Derived : public Base{
+  private :
+  int y;
+  public:
+  Derived() : Base()
+  {
+      y=0;
+      cout<<"Derived Default Constructor\n";
+  }
+  Derived(int a,int b) : Base(a)
+  {
+      y=b;
+      cout<<"Derived Parameterize Constructor\n";
+  }
+  void show()
+  {
+      Base :: show();
+      cout<<"Y : "<<y<<endl;
+  }
+};
+int main()
+{
+    Derived d(10,20);
+    d.show();
+
+    return 0;
+}
+*******************************************************************************/
+//Funtion Overriding 3
+#include <iostream>
+
+using namespace std;
+class Base 
+{
+    private:
+    int x;
+    public:
+    void get()
+    {
+        cout<<"Enter X:";
+        cin>>x;
+    }
+    void show()
+    {
+        cout<<"X : "<<x<<endl;
+    }
+};
+class Derived1 : public Base{
+  private :
+  int y;
+  public:
+  void get()
+  {
+      cout<<"Enter Y :";
+      cin>>y;
+  }
+  void show()
+  {
+      cout<<"Y : "<<y<<endl;
+  }
+};
+class Derived2 : public Base{
+  private :
+  int z;
+  public:
+  void get()
+  {
+      cout<<"Enter Z :";
+      cin>>z;
+  }
+  void show()
+  {
+      cout<<"Z : "<<z<<endl;
+  }
+};
+int main()
+{
+    Base a;
+    Derived1 b;
+    Derived2 c;
+    a.get();
+    b.get();
+    c.get();
+    a.show();
+    b.show();
+    c.show();
+
+    return 0;
+}
+*******************************************************************************/
+//Nested Class or containership
+#include <iostream>
+#define PI 3.14
+using namespace std;
+class Circle{
+    private:
+    float radius;
+    public:
+    Circle()
+    {
+        radius=0.0;
+        cout<<"Circle default constructor called\n";
+    }
+    Circle(float r)
+    {
+        radius=r;
+        cout<<"Circle parameterize constructor called\n";
+    }
+    void readRadius()
+    {
+        cout<<"Enter radius:: ";
+        cin>>radius;
+    }
+    void showRadius()
+    {
+        cout<<"Radius :: "<<radius<<endl;
+    }
+    float area()
+    {
+        float ar;
+        ar = PI * radius *radius;
+        return ar;
+    }
+    float getRadius()
+    {
+        return radius;
+    }
+};
+
+class Cylinder{
+    private :
+    float height;
+    Circle c;
+    public:
+    Cylinder() : c()
+    {
+        height = 0;
+        cout<<"Cylinder default constructor called.\n";
+    }
+    Cylinder(float r, float h) : c(r)
+    {
+        height = h;
+        cout<<"Cylinder parameterize constructor called.\n";
+    }
+    void readHeight()
+    {
+        c.readRadius();
+        cout<<"Enter Height :: ";
+        cin>>height;
+    }
+    void showHeight()
+    {
+        c.showRadius();
+        cout<<"Height : "<<height<<endl;
+    }
+    float volume()
+    {
+        float v;
+        v = PI * c.getRadius() * c.getRadius() *height;
+        return v;
+    }
+};
+
+int main()
+{
+    Cylinder cl(10.0, 10.0);
+    cl.showHeight();
+    cout<<"Enter details of Cylinder : "<<endl;
+    cl.readHeight();
+    cout<<"Cylinder : ";
+    cl.showHeight();
+    float v = cl.volume();
+    cout<<"Volume of Cylinder : "<<v<<endl;
+    return 0;
+}
+*******************************************************************************/
+//Inheritance with counter class
+#include <iostream>
+
+using namespace std;
+class Counter{
+  protected:
+  unsigned int count;
+  public:
+  Counter()
+  {
+      count=0;
+  }
+  Counter(int cnt)
+  {
+      count=cnt;
+  }
+  int getCount()
+  {
+      return count;
+  }
+  Counter operator ++()
+  {
+      return Counter(++count);
+  }
+};
+class CountDn : public Counter{
+  public :
+  Counter operator --()
+  {
+      return Counter(--count);
+  }
+};
+int main()
+{
+    CountDn c1;
+    cout<<"c1: "<<c1.getCount()<<endl;
+    ++c1;++c1;++c1;
+    cout<<"c1: "<<c1.getCount()<<endl;
+    --c1;--c1;
+    cout<<"c1: "<<c1.getCount()<<endl;
+
+    return 0;
+}
+*******************************************************************************/
+//Inheritance with counter class with Constructor in base and derived class
+#include <iostream>
+
+using namespace std;
+class Counter{
+  protected:
+  unsigned int count;
+  public:
+  Counter()
+  {
+      count=0;
+      cout<<"Base class default Constructor\n";
+  }
+  Counter(int cnt)
+  {
+      count=cnt;
+      cout<<"Base class parameterize Constructor\n";
+  }
+  int getCount()
+  {
+      return count;
+  }
+  Counter operator ++()
+  {
+      return Counter(++count);
+  }
+};
+class CountDn : public Counter{
+  public :
+  CountDn(){
+      cout<<"Derived class default Constructor\n";
+  }
+  CountDn(int c){
+      cout<<"Derived class parameterize Constructor\n";
+  }
+  Counter operator --()
+  {
+      return Counter(--count);
+  }
+};
+int main()
+{
+    CountDn c1;
+    cout<<"c1: "<<c1.getCount()<<endl;
+    ++c1;++c1;++c1;
+    cout<<"c1: "<<c1.getCount()<<endl;
+    --c1;--c1;
+    cout<<"c1: "<<c1.getCount()<<endl;
+
+    return 0;
+}
+*******************************************************************************/
+//Inheritance with Circle class(as base class) and Cylinder class(as Derived class)
+#include <iostream>
+#define PI 3.14
+using namespace std;
+class Circle{
+  private:
+  float radius;
+  public:
+  void readRadius()
+  {
+      cout<<"Enter radius::";
+      cin>>radius;
+  }
+  float area()
+  {
+      float ar;
+      ar = PI * radius *radius;
+      return ar;
+  }
+  void showRadius()
+  {
+      cout<<"Radius: "<<radius<<endl;
+  }
+  float getRadius()
+  {
+      return radius;
+  }
+};
+class Cylinder : public Circle{
+  float height;
+  public:
+  void readHeight()
+  {
+      cout<<"Enter Height:";
+      cin>>height;
+  }
+  void showHeight()
+  {
+      cout<<"Height: "<<height<<endl;
+  }
+  float volume()
+  {
+      float v;
+      v = PI * getRadius() * getRadius() * height; 
+      return v;
+  }
+};
+int main()
+{
+    Circle c1;
+    cout<<"Enter details of circle:"<<endl;
+    c1.readRadius();
+    cout<<"circle : "<<endl;
+    c1.showRadius();
+    float a = c1.area();
+    cout<<"Area of circle: "<<a<<endl;
+    
+    Cylinder cl;
+    cout<<"Enter details of Cylinder:"<<endl;
+    cl.readRadius();
+    cl.readHeight();
+    cout<<"Cylinder : "<<endl;
+    cl.showRadius();
+    cl.showHeight();
+    float v = cl.volume();
+    cout<<"Volume of Cylinder: "<<v<<endl;
+    
+    return 0;
+}
+*******************************************************************************/
+//Inheritance with Circle class(as base class) and Cylinder class(as Derived class)
+#include <iostream>
+#define PI 3.14
+using namespace std;
+class Circle{
+  protected:
+  float radius;
+  public:
+  void readRadius()
+  {
+      cout<<"Enter radius::";
+      cin>>radius;
+  }
+  float area()
+  {
+      float ar;
+      ar = PI * radius *radius;
+      return ar;
+  }
+  void showRadius()
+  {
+      cout<<"Radius: "<<radius<<endl;
+  }
+};
+class Cylinder : public Circle{
+  float height;
+  public:
+  void readHeight()
+  {
+      cout<<"Enter Height:";
+      cin>>height;
+  }
+  void showHeight()
+  {
+      cout<<"Height: "<<height<<endl;
+  }
+  float volume()
+  {
+      float v;
+      v = PI * radius * radius * height; 
+      return v;
+  }
+};
+int main()
+{
+    Cylinder cl;
+    cout<<"Enter details of Cylinder:"<<endl;
+    cl.readRadius();
+    cl.readHeight();
+    cout<<"Cylinder : "<<endl;
+    cl.showRadius();
+    cl.showHeight();
+    float v = cl.volume();
+    cout<<"Volume of Cylinder: "<<v<<endl;
+    
+    return 0;
+}
+*******************************************************************************/
+//Inheritance with private visiblity mode
+#include <iostream>
+#define PI 3.14
+using namespace std;
+class Circle{
+  private:
+  float radius;
+  public:
+  void readRadius()
+  {
+      cout<<"Enter radius::";
+      cin>>radius;
+  }
+  float area()
+  {
+      float ar;
+      ar = PI * radius *radius;
+      return ar;
+  }
+  void showRadius()
+  {
+      cout<<"Radius: "<<radius<<endl;
+  }
+};
+class Cylinder : private Circle{
+ 
+  float height;
+  public:
+  void readHeight()
+  {
+      readRadius();
+      cout<<"Enter Height:";
+      cin>>height;
+  }
+  void showHeight()
+  {
+      showRadius();
+      cout<<"Height: "<<height<<endl;
+  }
+  float volume()
+  {
+      float v;
+      v = area()* height; 
+      return v;
+  }
+};
+int main()
+{
+    Cylinder cl;
+    cout<<"Enter details of Cylinder:"<<endl;
+    cl.readHeight();
+    cout<<"Cylinder : "<<endl;
+    cl.showHeight();
+    float v = cl.volume();
+    cout<<"Volume of Cylinder: "<<v<<endl;
+    
+    return 0;
+}
+*******************************************************************************/
+//Inheritance with protected Visibility Mode
+#include <iostream>
+#define PI 3.14
+using namespace std;
+class Circle{
+  private:
+  float radius;
+  public:
+  void readRadius()
+  {
+      cout<<"Enter radius::";
+      cin>>radius;
+  }
+  float area()
+  {
+      float ar;
+      ar = PI * radius *radius;
+      return ar;
+  }
+  void showRadius()
+  {
+      cout<<"Radius: "<<radius<<endl;
+  }
+  float getRadius()
+  {
+      return radius;
+  }
+};
+class Cylinder : protected Circle{
+  private:
+  float height;
+  public:
+  void readHeight()
+  {
+      readRadius();
+      cout<<"Enter Height:";
+      cin>>height;
+  }
+  void showHeight()
+  {
+      showRadius();
+      cout<<"Height: "<<height<<endl;
+  }
+  float volume()
+  {
+      float v;
+      v = PI * getRadius() * getRadius() * height; 
+      return v;
+  }
+};
+int main()
+{
+    Cylinder cl;
+    cout<<"Enter details of Cylinder:"<<endl;
+    cl.readHeight();
+    cout<<"Cylinder : "<<endl;
+    cl.showHeight();
+    float v = cl.volume();
+    cout<<"Volume of Cylinder: "<<v<<endl;
+    
+    return 0;
+}
+*******************************************************************************/
+//Inheritance with default and parameterize constructor in both base class 
+//and derived class and explicit call to base class parameterize constructor
+#include <iostream>
+#define PI 3.14
+using namespace std;
+class Circle{
+  protected:
+  float radius;
+  public:
+  Circle()
+  {
+      radius = 0.0;
+      cout<<"Circle default constructor\n";
+  }
+  Circle(float r)
+  {
+      radius = r;
+      cout<<"Circle parameterize constructor\n";
+  }
+  void readRadius()
+  {
+      cout<<"Enter radius::";
+      cin>>radius;
+  }
+  float area()
+  {
+      float ar;
+      ar = PI * radius *radius;
+      return ar;
+  }
+  void showRadius()
+  {
+      cout<<"Radius: "<<radius<<endl;
+  }
+};
+class Cylinder : public Circle{
+  private:
+  float height;
+  public:
+  Cylinder() : Circle()
+  {
+      height = 0.0;
+      cout<<"Cylinder default constructor\n";
+  }
+  Cylinder(float r, float h) : Circle(r)
+  {
+      height = h;
+      cout<<"Cylinder parameterize constructor\n";
+  }
+  void readHeight()
+  {
+      cout<<"Enter Height:";
+      cin>>height;
+  }
+  void showHeight()
+  {
+     cout<<"Height: "<<height<<endl;
+  }
+  float volume()
+  {
+      float v;
+      v = PI * radius * radius * height; 
+      return v;
+  }
+};
+int main()
+{
+    Cylinder cl(10.0, 10.0);
+    cl.showRadius();
+    cl.showHeight();
+    
+    cout<<"Enter details of Cylinder:"<<endl;
+    cl.readRadius();
+    cl.readHeight();
+    
+    cout<<"Cylinder : "<<endl;
+    cl.showRadius();
+    cl.showHeight();
+    
+    float v = cl.volume();
+    cout<<"Volume of Cylinder: "<<v<<endl;
+    
+    return 0;
+}
+********************************END******************************************
+
+

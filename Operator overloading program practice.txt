@@ -1,0 +1,478 @@
+*******************************************************************************/
+//Unary minus(-) operator overloading
+#include <iostream>
+
+using namespace std;
+class Counter
+{
+    unsigned int count;
+    public:
+    Counter()
+    {
+        count=0;
+    }
+    Counter(int c)
+    {
+        count = c;
+    }
+    int getCount()
+    {
+        return count;
+    }
+    void operator -() //prefix
+    {
+        count = -count;
+    }
+};
+int main()
+{
+    Counter c1(10), c2(20);
+    cout<<"c1 : "<<c1.getCount()<<endl;
+    cout<<"c2 : "<<c2.getCount()<<endl;
+    -c2;
+    cout<<"c1 : "<<c1.getCount()<<endl;
+    cout<<"-c2 : "<<c2.getCount()<<endl;
+    
+    return 0;
+}
+*******************************************************************************/
+//Unary (++) operator overloading
+#include <iostream>
+
+using namespace std;
+class increase
+{
+    private:
+    int data;
+    public:
+    increase()
+    {
+        data=0;
+    }
+    void display()
+    {
+        cout<<data<<endl;
+    }
+    void operator ++() // preincrement
+    {
+        ++data;
+    }
+};
+int main()
+{
+    increase i1,i2;
+    i1.display();
+    i2.display();
+    ++i1;
+    ++i1;
+    ++i2;
+    //i2++; //warning.
+    i1.display();
+    i2.display();
+    return 0;
+}
+*******************************************************************************/
+//Prefix and Postfix Increment (++) operator overloading
+#include <iostream>
+
+using namespace std;
+class increase
+{
+    private:
+    int data;
+    public:
+    increase()
+    {
+        data=0;
+    }
+    int display()
+    {
+        return data;
+    }
+    void operator ++() // Prefix Increment
+    {
+        data++;
+        cout<<"Prefix Increment."<<endl;
+    }
+    void operator ++(int ) // Postfix Increment
+    {
+        data++;
+        cout<<"Postfix Increment."<<endl;
+    }
+    
+};
+int main()
+{
+    increase i1,i2;
+    cout<<"i1 : "<<i1.display()<<endl;
+    cout<<"i2 : "<<i2.display()<<endl;;
+    ++i1;
+    ++i2;
+    i2++;
+    cout<<"i1 : "<<i1.display()<<endl;
+    cout<<"i2 : "<<i2.display()<<endl;;
+    
+    return 0;
+}
+*******************************************************************************/
+//Return Object Increment (++) operator overloading function
+#include <iostream>
+
+using namespace std;
+class Counter
+{
+    private:
+    int count;
+    public:
+    Counter()
+    {
+        count=0;
+    }
+    int getCount()
+    {
+        return count;
+    }
+    Counter operator ++()
+    {
+        count++;
+        Counter c;
+        c.count = count;
+        return c;
+    }
+};
+int main()
+{
+    Counter c1,c2;
+    cout<<"c1 : "<<c1.getCount()<<endl;
+    cout<<"c2 : "<<c2.getCount()<<endl;;
+    ++c1;
+    c2 = ++c1;
+    cout<<"c1 : "<<c1.getCount()<<endl;
+    cout<<"c2 : "<<c2.getCount()<<endl;;
+    
+    return 0;
+}
+*******************************************************************************/
+//Return Nameless Object Increment (++) operator overloading function
+#include <iostream>
+
+using namespace std;
+class Counter
+{
+    private:
+    int count;
+    public:
+    Counter()
+    {
+        count=0;
+    }
+    Counter(int cnt)
+    {
+        count = cnt;
+    }
+    int getCount()
+    {
+        return count;
+    }
+    Counter operator ++()
+    {
+        count++;
+        return Counter(count);
+    }
+};
+int main()
+{
+    Counter c1,c2;
+    cout<<"c1 : "<<c1.getCount()<<endl;
+    cout<<"c2 : "<<c2.getCount()<<endl;;
+    ++c1;
+    c2 = ++c1;
+    cout<<"c1 : "<<c1.getCount()<<endl;
+    cout<<"c2 : "<<c2.getCount()<<endl;;
+    
+    return 0;
+}
+*******************************************************************************/
+//Binary + operator overloading
+#include <iostream>
+
+using namespace std;
+class data
+{
+    private:
+    int d;
+    public:
+    data()
+    {
+        d=0;
+    }
+    data(int dt)
+    {
+        d = dt;
+    }
+    void show()
+    {
+        cout<<d<<endl;
+    }
+    data operator +(data obj)
+    {
+        data temp;
+        temp.d = obj.d + d;
+        return temp;
+    }
+};
+int main()
+{
+    data d1(2), d2(10), d3;
+    d3 = d1 + d2;
+    d3.show();
+    return 0;
+}
+*******************************************************************************/
+//Binary + operator overloading
+#include <iostream>
+
+using namespace std;
+class Complex
+{
+    private:
+    float x,y;
+    public:
+    Complex(){}
+    Complex(float real, float image)
+    {
+        x=real;
+        y=image;
+    }
+    void show(void);
+    Complex operator +(Complex);
+};
+Complex Complex :: operator +(Complex obj)
+{
+    Complex temp;
+    temp.x = x + obj.x;
+    temp.y = y + obj.y;
+    return temp;
+}
+void Complex :: show(void)
+{
+    cout<< x << " + "<< y <<endl;
+}
+int main()
+{
+    Complex c1, c2, c3;
+    c1 = Complex(2.5, 3.5);
+    c2 = Complex(1.6, 2.7);
+    c3 = c1 + c2;
+    cout<<"c1 : ";
+    c1.show();
+    cout<<"c2 : ";
+    c2.show();
+    cout<<"***************\n";
+    cout<<"c3 : ";
+    c3.show();
+    
+    return 0;
+}
+*******************************************************************************/
+//Relational (<) operator Overloading
+#include <iostream>
+#include <cstdio>
+
+using namespace std;
+class Distance{
+  private:
+  int feet;
+  float inches;
+  public:
+  Distance()
+  {
+      feet = 0;
+      inches = 0.0;
+  }
+  Distance(int ft, float in)
+  {
+      feet = ft;
+      inches = in;
+  }
+  void getDist()
+  {
+      cout<<"Enter Feet & Inches:";
+      cin>>feet>>inches;
+  }
+  void showDist()
+  {
+      cout<<feet<<"\'-"<<inches<<"\""<<endl;
+  }
+  int operator <(Distance);
+};
+int Distance :: operator <(Distance d)
+{
+    float f1 = feet +(inches/12.0);
+    float f2 = d.feet + (d.inches/12.0);
+    return ((f1<f2) ? 1 : 0);
+}
+int main()
+{
+    Distance d1,d2(10,6.0);
+    d1.getDist();
+    cout<<"d1 : ";
+    d1.showDist();
+    cout<<"d2 : ";
+    d2.showDist();
+    if(d1<d2)
+    cout<<"Distance d1 < d2"<<endl;
+    else
+    cout<<"Distance d >= d2"<<endl;
+    return 0;
+}
+*******************************************************************************/
+//shorthand assignment += operator Overloading
+#include <iostream>
+#include <cstdio>
+
+using namespace std;
+class Height{
+  private:
+  int feet;
+  float inches;
+  public:
+  Height()
+  {
+      feet = inches = 0;
+  }
+  Height(int ft, float in)
+  {
+      feet = ft;
+      inches = in;
+  }
+  void show()
+  {
+      cout<<"Feet = "<<feet<<" "<<"Inches = "<<inches<<endl;
+  }
+  void operator +=(Height h)
+  {
+      feet+=h.feet;
+      inches+=h.inches;
+      if(inches>=12)
+      {
+          inches = 12;
+          feet++;
+      }
+  }
+};
+int main()
+{
+    Height h1(10,15),h2(7,18);
+    h1+=h2;
+    h1.show();
+    
+    return 0;
+}
+*******************************************************************************/
+//Overload Plus (+) operator to concat string class object
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+const int SZ = 80;
+class String{
+    char str[SZ];
+    public:
+    String()
+    {
+        strcpy(str,"\0");
+    }
+    String(char s[])
+    {
+        strcpy(str,s);
+    }
+    void display()
+    {
+        cout<<str;
+    }
+    String operator + (String);
+    
+};
+String String :: operator + (String s2)
+{
+    String temp;
+    if((strlen(str) + strlen(s2.str)) <SZ)
+    {
+        strcpy(temp.str,str);
+        strcat(temp.str,s2.str);
+    }
+    else
+    cout<<"String too long"<<endl;
+    return temp;
+}
+int main()
+{
+    String s1("C++");
+    String s2 = "Programming";
+    String s3("Examples");
+    String s4;
+    cout<<"\n s1: ";
+    s1.display();
+    cout<<"\n s2: ";
+    s2.display();
+    cout<<"\n s3: ";
+    s3.display();
+    
+    s4=s1;
+    s4=s1+s2;
+    cout<<"\n s4: ";
+    s4.display();
+    
+    s4=s4+s3;
+    cout<<"\n s4: ";
+    s4.display();
+    return 0;
+}
+*******************************************************************************/
+//Overload Plus (+) operator to concat string class object
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+const int SZ = 80;
+
+class String{
+    char str[SZ];
+    public:
+    String()
+    {
+        strcpy(str,"\0");
+    }
+    String(char s[])
+    {
+        strcpy(str,s);
+    }
+    void display()
+    {
+        cout<<str;
+    }
+    int operator == (String);
+    
+};
+int String :: operator == (String s2)
+{
+    return ((strcmp(str,s2.str)==0) ? 1 : 0);
+}
+int main()
+{
+    String s1("Hello");
+    String s2 = "Hello";
+    String s3("HELLO");
+    
+    if(s1 == s2)
+    cout<<"s1 == s2"<<endl;
+    else
+    cout<<"s1 != s2"<<endl;
+    if(s1==s3)
+    cout<<"s1 == s3"<<endl;
+    else
+    cout<<"s1 != s3"<<endl;
+    
+    return 0;
+}

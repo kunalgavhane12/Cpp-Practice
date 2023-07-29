@@ -1,0 +1,497 @@
+*******************************************************************************/
+//Virtual Function
+#include <iostream>
+
+using namespace std;
+class B{
+    public:
+    virtual void display()
+    {
+        cout<<"Content of base class\n";
+    }
+};
+class D1 : public B{
+  public:
+  void display()
+  {
+      cout<<"Content of first Derived class\n";
+  }
+};
+class D2 : public B{
+  public :
+  void display()
+  {
+      cout<<"Content of second Derived class\n";
+  }
+};
+int main()
+{
+    B *b; 
+    D1 d1;
+    D2 d2;
+    b=&d1;
+    b->display();
+    b=&d2;
+    b->display();
+
+    return 0;
+}
+*******************************************************************************/
+//Static Binding/ Early Binding/ compile-time binding
+#include <iostream>
+
+using namespace std;
+class Shape{
+    protected:
+    float width,height;
+    public:
+    Shape(float a=0.0, float b=0.0)
+    {
+        width=a;
+        height=b;
+    }
+    void area()
+    {
+        cout<<"Shape clas area : "<< 0 << endl;
+    }
+};
+class Rectangle : public Shape{
+  public:
+  Rectangle(float a=0.0, float b=0.0) : Shape(a,b)
+  {}
+  void area()
+  {
+      cout<<"Rectangle class area : "<<(width*height)<<endl;
+  }
+};
+class Triangle : public Shape{
+  public:
+  Triangle(float a=0.0, float b=0.0) : Shape(a,b)
+  {}
+  void area()
+  {
+      cout<<"Triangle class area : "<<((width*height)/2)<<endl;
+  }
+};
+
+int main()
+{
+    Shape *shape;
+    Rectangle rec(10,7);
+    Triangle tri(10,5);
+    shape = &rec;
+    shape->area();
+    shape = &tri;
+    shape->area();
+    return 0;
+}
+*******************************************************************************/
+//Dynamic Binding/ late Binding/ run-time binding using virtual function
+#include <iostream>
+
+using namespace std;
+class Shape{
+    protected:
+    float width,height;
+    public:
+    Shape(float a=0.0, float b=0.0)
+    {
+        width=a;
+        height=b;
+    }
+   virtual void area()
+    {
+        cout<<"Shape clas area : "<< 0 << endl;
+    }
+};
+class Rectangle : public Shape{
+  public:
+  Rectangle(float a=0.0, float b=0.0) : Shape(a,b)
+  {}
+  void area()
+  {
+      cout<<"Rectangle class area : "<<(width*height)<<endl;
+  }
+};
+class Triangle : public Shape{
+  public:
+  Triangle(float a=0.0, float b=0.0) : Shape(a,b)
+  {}
+  void area()
+  {
+      cout<<"Triangle class area : "<<((width*height)/2)<<endl;
+  }
+};
+
+int main()
+{
+    Shape *shape;
+    Rectangle rec(10,7);
+    Triangle tri(10,5);
+    shape = &rec;
+    shape->area();
+    shape = &tri;
+    shape->area();
+    return 0;
+}
+*******************************************************************************/
+//Pure virtual function and abstract class
+#include <iostream>
+
+using namespace std;
+class Shape{
+    protected:
+    float width,height;
+    public:
+    Shape(float a=0.0, float b=0.0)
+    {
+        width=a;
+        height=b;
+    }
+   virtual void area()=0;
+};
+class Rectangle : public Shape{
+  public:
+  Rectangle(float a=0.0, float b=0.0) : Shape(a,b)
+  {}
+  void area()
+  {
+      cout<<"Rectangle class area : "<<(width*height)<<endl;
+  }
+};
+class Triangle : public Shape{
+  public:
+  Triangle(float a=0.0, float b=0.0) : Shape(a,b)
+  {}
+  void area()
+  {
+      cout<<"Triangle class area : "<<((width*height)/2)<<endl;
+  }
+};
+
+int main()
+{
+    Shape *shape;
+    Rectangle rec(10,7);
+    Triangle tri(10,5);
+    shape = &rec;
+    shape->area();
+    shape = &tri;
+    shape->area();
+    return 0;
+}
+*******************************************************************************/
+//Parameterized Constructor and Destructor in hierarchical Inheritance 
+//without virtual Destructor
+#include <iostream>
+
+using namespace std;
+class A{
+  private:
+  int x;
+  public:
+  A(int a)
+  {
+      x=a;
+      cout<<"A Para. Constructor."<<endl;
+  }
+  ~A()
+  {
+      cout<<"A Destructor."<<endl;
+  }
+  virtual void show()
+  {
+      cout<<"x : "<<x<<endl;
+  }
+};
+class B : public A{
+  private:
+  int y;
+  public:
+  B(int a, int b) : A(a)
+  {
+      y=b;
+      cout<<"B Para. Constructor."<<endl;
+  }
+  ~B()
+  {
+      cout<<"B Destructor."<<endl;
+  }
+  void show()
+  {
+      cout<<"y : "<<y<<endl;
+  }
+};
+
+class C : public A{
+  private:
+  int z;
+  public:
+  C(int a, int c) : A(a)
+  {
+     z=c;
+      cout<<"C Para. Constructor."<<endl;
+  }
+  ~C()
+  {
+      cout<<"C Destructor."<<endl;
+  }
+  void show()
+  {
+      cout<<"z : "<<z<<endl;
+  }
+};
+int main()
+{
+    A *p;
+    p = new A(10);
+    p->show();
+    delete p;
+    
+    p = new B(10,20);
+    p->show();
+    delete p;
+    
+    p = new C(10,30);
+    p->show();
+    delete p;
+    return 0;
+}
+*******************************************************************************/
+//Parameterized Constructor and Destructor in hierarchical Inheritance 
+//with virtual Destructor
+#include <iostream>
+
+using namespace std;
+class A{
+  private:
+  int x;
+  public:
+  A(int a)
+  {
+      x=a;
+      cout<<"A Para. Constructor."<<endl;
+  }
+  virtual ~A()
+  {
+      cout<<"A Destructor."<<endl;
+  }
+  virtual void show()
+  {
+      cout<<"x : "<<x<<endl;
+  }
+};
+class B : public A{
+  private:
+  int y;
+  public:
+  B(int a, int b) : A(a)
+  {
+      y=b;
+      cout<<"B Para. Constructor."<<endl;
+  }
+  ~B()
+  {
+      cout<<"B Destructor."<<endl;
+  }
+  void show()
+  {
+      cout<<"y : "<<y<<endl;
+  }
+};
+
+class C : public A{
+  private:
+  int z;
+  public:
+  C(int a, int c) : A(a)
+  {
+     z=c;
+      cout<<"C Para. Constructor."<<endl;
+  }
+  ~C()
+  {
+      cout<<"C Destructor."<<endl;
+  }
+  void show()
+  {
+      cout<<"z : "<<z<<endl;
+  }
+};
+int main()
+{
+    A *p;
+    p = new A(10);
+    p->show();
+    delete p;
+    
+    p = new B(10,20);
+    p->show();
+    delete p;
+    
+    p = new C(10,30);
+    p->show();
+    delete p;
+    return 0;
+}
+*******************************************************************************/
+//Parameterized Constructor and Destructor in hierarchical Inheritance 
+//with virtual Destructor and dymanic memory allocation
+#include <iostream>
+
+using namespace std;
+class A{
+  private:
+  int *px;
+  public:
+  A(int a)
+  {
+      px = new int(a);
+      cout<<"A Para. Constructor."<<endl;
+  }
+  virtual ~A()
+  {
+      cout<<"A Destructor."<<endl;
+      delete px;
+  }
+  virtual void show()
+  {
+      cout<<"x : "<<*px<<endl;
+  }
+};
+class B : public A{
+  private:
+  int *py;
+  public:
+  B(int a, int b) : A(a)
+  {
+      py = new int(b);
+      cout<<"B Para. Constructor."<<endl;
+  }
+  ~B()
+  {
+      cout<<"B Destructor."<<endl;
+      delete py;
+  }
+  void show()
+  {
+      cout<<"y : "<<*py<<endl;
+  }
+};
+
+class C : public A{
+  private:
+  int *pz;
+  public:
+  C(int a, int c) : A(a)
+  {
+     pz = new int(c);
+      cout<<"C Para. Constructor."<<endl;
+  }
+  ~C()
+  {
+      cout<<"C Destructor."<<endl;
+      delete pz;
+  }
+  void show()
+  {
+      cout<<"z : "<<*pz<<endl;
+  }
+};
+int main()
+{
+    A *p;
+    p = new A(10);
+    p->show();
+    delete p;
+    
+    p = new B(10,20);
+    p->show();
+    delete p;
+    
+    p = new C(10,30);
+    p->show();
+    delete p;
+    return 0;
+}
+*******************************************************************************/
+//Parameterized Constructor and Destructor in hierarchical Inheritance 
+//without virtual Destructor and dymanic memory allocation
+#include <iostream>
+
+using namespace std;
+class A{
+  private:
+  int *px;
+  public:
+  A(int a)
+  {
+      px = new int(a);
+      cout<<"A Para. Constructor."<<endl;
+  }
+  ~A()
+  {
+      cout<<"A Destructor."<<endl;
+      delete px;
+  }
+  virtual void show()
+  {
+      cout<<"x : "<<*px<<endl;
+  }
+};
+class B : public A{
+  private:
+  int *py;
+  public:
+  B(int a, int b) : A(a)
+  {
+      py = new int(b);
+      cout<<"B Para. Constructor."<<endl;
+  }
+  ~B()
+  {
+      cout<<"B Destructor."<<endl;
+      delete py;
+  }
+  void show()
+  {
+      cout<<"y : "<<*py<<endl;
+  }
+};
+
+class C : public A{
+  private:
+  int *pz;
+  public:
+  C(int a, int c) : A(a)
+  {
+     pz = new int(c);
+      cout<<"C Para. Constructor."<<endl;
+  }
+  ~C()
+  {
+      cout<<"C Destructor."<<endl;
+      delete pz;
+  }
+  void show()
+  {
+      cout<<"z : "<<*pz<<endl;
+  }
+};
+int main()
+{
+    A *p;
+    p = new A(10);
+    p->show();
+    delete p;
+    
+    p = new B(10,20);
+    p->show();
+    delete p;
+    
+    p = new C(10,30);
+    p->show();
+    delete p;
+    return 0;
+}
+********************************END****************************************

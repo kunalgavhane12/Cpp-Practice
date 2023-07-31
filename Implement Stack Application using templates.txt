@@ -1,0 +1,165 @@
+mini project-2: Implement stack application using templates
+main function: print main menu in loop
+1. int 2. char 3.float 4.double 5.string 6.exit
+suppose option selected: 1
+then print message" int stack application ready to use"
+print sub menu in loop
+1.push 2.pop 3.display_stack 4.main_menu
+select option from user: if option 1 then enter element from user. then sub menu will appear again select option.
+conditions:
+1. in push if elements count reached to max_size (5) then print message " Stack overflow". else add element in satck
+2.in pop if no elements then print message " stack underflow" else delete element from stack
+3. in display no elements then print message " Stack is empty" else display elements
+4. if option is 4 then go to main menu.
+
+condition for main menu: if user selecetd option 6 terminate the program.
+if user seleceted option 1 (int) again,it is entering into int stack application second time so need to ask user choice: "1)continue_old_stack 2) new_stack"
+if user selecetd option 1 then continue with old stack or else create new stack stack application. if user enetering any datatype stack applicaton more than 1 time then user choice required
+terminating consitions:-
+1.if user selecetd option 6 then terminate 
+2. if user provide wrong option continuesly more than 3 times.
+3. if user first selected wrong option then display message " please read the options carefully" agian if user selecetd wrong option then print message " last chance please take care"
+again wrong option selected again then print message: "thanks for using our applciation .please read the manual and come back properly".
+if user selecetd 1 wrong option then valid option you need to reset the chance count to 3. now user will get 3 chances.
+
+use proper colours also for good documentary.
+#define max_size 5
+main function: print main menu in loop
+template<class Type>
+class Stack
+static count TOP;
+Type stk[max_size];
+stk()
+{
+TOP=-1;
+}
+};
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int choise,data;
+    do{
+     main_menu:cout<<"1.int 2.char 3.float 4.double 5.string 6.exit\n";
+        cin>>choise;
+        switch(choise)
+        {
+            //for interger stack
+            case 1 :
+            cout<<"1.push 2.pop 3.display_stack 4.main_menu\n";
+            cin>>choise;
+            switch(choise)
+            {
+                case 1:
+                        cout<<"Enter push data :"<<endl;
+                        cin>>data;
+                      //  push(data);
+                        break;
+                case 2:
+                       // cout<<"pop data :"<<pop()<<endl;
+                        break;
+                case 3:
+                       // display();
+                        break;
+                case 4:
+                        goto main_menu;
+            }
+            break;
+            //for char stack
+            case 2 :
+            cout<<"1.push 2.pop 3.display_stack 4.main_menu\n";
+            cin>>choise;
+            switch(choise)
+            {
+                case 1:
+                        cout<<"Enter push data :"<<endl;
+                        cin>>data;
+                      //  push(data);
+                        break;
+                case 2:
+                       // cout<<"pop data :"<<pop()<<endl;
+                        break;
+                case 3:
+                       // display();
+                        break;
+                case 4:
+                        goto main_menu;
+            }
+            break;
+            //for float stack
+            case 3 :
+            cout<<"1.push 2.pop 3.display_stack 4.main_menu\n";
+            cin>>choise;
+            switch(choise)
+            {
+                case 1:
+                        cout<<"Enter push data :"<<endl;
+                        cin>>data;
+                      //  push(data);
+                        break;
+                case 2:
+                       // cout<<"pop data :"<<pop()<<endl;
+                        break;
+                case 3:
+                       // display();
+                        break;
+                case 4:
+                        goto main_menu;
+            }
+            break;
+            //for double stack
+            case 4 :
+            cout<<"1.push 2.pop 3.display_stack 4.main_menu\n";
+            cin>>choise;
+            switch(choise)
+            {
+                case 1:
+                        cout<<"Enter push data :"<<endl;
+                        cin>>data;
+                      //  push(data);
+                        break;
+                case 2:
+                       // cout<<"pop data :"<<pop()<<endl;
+                        break;
+                case 3:
+                       // display();
+                        break;
+                case 4:
+                        goto main_menu;
+            }
+            break;
+            //for string stack
+            case 5 :
+            cout<<"1.push 2.pop 3.display_stack 4.main_menu\n";
+            cin>>choise;
+            switch(choise)
+            {
+                case 1:
+                        cout<<"Enter push data :"<<endl;
+                        cin>>data;
+                      //  push(data);
+                        break;
+                case 2:
+                       // cout<<"pop data :"<<pop()<<endl;
+                        break;
+                case 3:
+                       // display();
+                        break;
+                case 4:
+                        goto main_menu;
+            }
+            break;
+            case 6:exit(0);
+            default:
+            cout<<"Invalid choise"<<endl;
+            
+        }
+    }while(1);
+    
+    return 0;
+}

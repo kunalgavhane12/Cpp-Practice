@@ -476,3 +476,171 @@ int main()
     
     return 0;
 }
+*******************************************************************************/
+//Type Conversion(basic to object) and (object to basic)
+#include <iostream>
+#include <string.h>
+using namespace std;
+const int sz = 80;
+class String{
+  char str[sz];
+  public:
+  String()
+  {
+      strcpy(str,"\0");
+  }
+  //for basic to object
+  String(char s[])
+  {
+      strcpy(str,s);
+  }
+  void display()
+  {
+      cout<<str;
+  }
+  //for object to basic
+  operator char*()
+  {
+      return str;
+  }
+};
+int main()
+{
+    String s1;
+    char st[] = "C++";
+    s1 = st;
+    String s2 = "Programming";
+    String s3("Examples");
+    
+    cout<<"s1: "<<(char*)s1<<endl;
+    cout<<"s2: "<<(char*)s2<<endl;
+    cout<<"s3: "<<(char*)s3<<endl;    
+  
+    return 0;
+}
+*******************************************************************************/
+//Overload insertion operator (<<) and Extraction operator(>>)
+
+#include <iostream>
+using namespace std;
+class Distance{
+  private:
+  int feet;
+  float inches;
+  public:
+  Distance()
+  {
+      inches = 0.0;
+      feet = 0;
+  }
+  friend istream &operator >> (istream&, Distance&);
+  friend ostream &operator << (ostream&, Distance&);
+};
+istream &operator >>(istream& in, Distance & obj)
+{
+    cout<<"Enter feet & inches : ";
+    in>>obj.feet>>obj.inches;
+    
+}
+ostream &operator <<(ostream &out, Distance & obj)
+{
+    out<<obj.feet<<"\'-"<<obj.inches<<"\"";
+}
+int main()
+{
+    Distance d1;
+    Distance d2;
+    cin>>d1>>d2;
+    cout<<"d1 : "<<d1<<endl;
+    cout<<"d2 : "<<d2<<endl;
+    
+    return 0;
+}
+*******************************************************************************/
+//Assignment operator (=) with returning object
+#include <iostream>
+using namespace std;
+class A{
+  private:
+  int x;
+  public:
+  A(){ }
+  A(int a){
+      x=a;
+  }
+  A(A &a)
+  {
+      x = a.x;
+      cout<<"Copy constructor called"<<endl;
+  }
+  void show()
+  {
+      cout<<"x : "<< x<<endl; 
+  }
+  A &operator = (A &a)
+  {
+      x =a.x;
+      cout<<"Assignment operator called\n";
+      return *this;
+  }
+};
+int main()
+{
+    A a1(10);
+    A a2,a3;
+    a1.show();
+    
+    a3=a2=a1;
+    a2.show();
+    a3.show();
+    
+    A a4=a1;
+    a4.show();
+    
+    A a5(a1);
+    a5.show();
+    
+    return 0;
+}
+*******************************************************************************/
+//BINARY > and == operator
+#include <iostream>
+using namespace std;
+class data{
+    private:
+    int d;
+    public:
+    data()
+    {
+        d=0;
+    }
+    data(int dt)
+    {
+        dt=0;
+    }
+    int operator > (data obj)
+    {
+        if(d > obj.d)
+        return 1;
+        else
+        return 0;
+    }
+    int operator == (data obj)
+    {
+        if(d==obj.d)
+        return 1;
+        else
+        return 0;
+    }
+};
+int main()
+{
+    data t1(43),t2(20);
+    if(t1==t2)
+    cout<<"Number are equal\n";
+    else if(t1>t2)
+    cout<<"T1 greater.\n";
+    else
+    cout<<"T2 greater.\n";
+}
+

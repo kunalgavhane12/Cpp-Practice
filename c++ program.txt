@@ -1,0 +1,119 @@
+/******************************************************************************
+
+Problems with Normal Pointers
+Some Issues with normal pointers in C++ are as follows:
+
+Memory Leaks: This occurs when memory is repeatedly allocated by a program but never freed.
+This leads to excessive memory consumption and eventually leads to a system crash.
+
+Dangling Pointers: A dangling pointer is a pointer that occurs at the time when the object 
+is de-allocated from memory without modifying the value of the pointer.
+
+Wild Pointers: Wild pointers are pointers that are declared and allocated memory but the 
+pointer is never initialized to point to any valid object or address.
+
+Data Inconsistency: Data inconsistency occurs when some data is stored in memory but is 
+not updated in a consistent manner.
+
+Buffer Overflow: When a pointer is used to write data to a memory address that is outside of
+the allocated memory block. This leads to the corruption of data which can be exploited by malicious attackers.
+
+*******************************************************************************/
+/*******************************************************************************
+shared pointer its shared the same memory loaction
+when pointer goes outoff scope its will delated 
+*******************************************************************************/
+#include <iostream>
+#include <memory>
+using namespace std;
+class myclass{
+  public:
+  myclass(){}
+  void display(){
+      cout<<"Base"<<endl;
+  }
+};
+int main()
+{
+    shared_ptr<myclass> p1(new myclass());
+    p1->display();
+    cout<<p1.use_count()<<endl;
+    shared_ptr<myclass> p2(p1);
+    p2=p1;
+    cout<<p2.use_count()<<endl;
+    cout<<"goes out of scoped"<<endl;
+    cout<<p1.use_count()<<endl;
+}
+/******************************************************************************
+object slicing (only inheritance)
+when derrived class object assign to base class object
+then extra feature(Additional Features) of derrived class object feature
+sliced OFF the derrived class object.
+*******************************************************************************/
+#include <iostream>
+
+using namespace std;
+class base{
+  int x,y;
+  public:
+  base(){x=0;y=0;}
+  base(int a, int b): x(a),y(b){}
+  void display()
+  {
+      cout<<"x : "<<x<<" y: "<<y<<endl;
+  }
+};
+class derived:public base
+{
+  int m,n;
+  public:
+  derived(int a, int b, int c,int d):base(a,b)
+  {
+      m=c;
+      n=d;
+  }
+  void display()
+  {
+      base::display();
+      cout<<"m: "<<m<<" n: "<<n<<endl;
+  }
+};
+int main()
+{
+    base b;
+    derived d(100,200,300,400);
+    b=d;//object slicing will happend
+    //d=b;invalid
+    b.display();
+    d.display();
+    
+
+    return 0;
+}
+/******************************************************************************
+redefination of namspace possiable
+but take everthing is uniqe
+*******************************************************************************/
+#include <iostream>
+
+using namespace std;
+namespace sbi
+{
+    long long accno =31453345881;
+    void note()
+    {
+        cout<<"Welcome to SBI"<<endl;
+    }
+}
+namespace sbi
+{
+    int pinno =444001;
+}
+int main()
+{
+    using namespace sbi;
+    cout<<"Account no: "<<accno<<" Pin code: "<<pinno<<endl;
+    note();
+
+    return 0;
+}

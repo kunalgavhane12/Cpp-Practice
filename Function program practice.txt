@@ -1,0 +1,341 @@
+*******************************************************************************/
+//Merge Two Array using Function
+#include <iostream>
+
+using namespace std;
+void Merge(int [],int,int [],int,int []);
+int main()
+{
+    int A[50],B[50],C[100],MN=0,M,N;
+    cout<<"Enter Number of elements in First Array: ";
+    cin>>M;
+    cout<<"Enter First Array elements : ";
+    for(int i=0; i<M; i++)
+    cin>>A[i];
+    
+    cout<<"Enter Number of elements in Second Array: ";
+    cin>>N;
+    cout<<"Enter Second Array elements : ";
+    for(int i=0; i<N; i++)
+    cin>>B[i];
+    
+    MN = M + N;
+    Merge(A,M,B,N,C);
+    cout<<"The Sorted Array after Merging is :"<<endl;
+    for(int i=0; i<MN; i++)
+    cout<<C[i]<<" ";
+    return 0;
+}
+void Merge(int A[],int M,int B[],int N, int C[])
+{
+    int a,b,c;
+    for(a=0,b=0,c=0; a<M && b<N; )
+    {
+        if(A[a] < B[b])
+        C[c++]= A[a++];
+        else
+        C[c++]=B[b++];
+    }
+    if(a<M)
+    {
+        while(a < M)
+        C[c++] = A[a++];
+    }
+    else
+    {
+        while(b<N)
+        C[c++] = B[b++];
+    }
+}
+//returning by referance
+#include <iostream>
+
+using namespace std;
+int &min (int &a, int &b)
+{
+    if(a<b)
+    return a;
+    else
+    return b;
+}
+
+int main()
+{
+    int x,y;
+    cout<<"Enter x:";
+    cin>>x;
+    cout<<"Enter y:";
+    cin>>y;
+    cout<<"x = "<<x<<" y = "<<y<<endl;
+    min(x,y)=100;
+    cout<<"x = "<<x<<" y = "<<y<<endl;
+    return 0;
+}
+*******************************************************************************/
+//returning Multiple value from function using referance
+#include <iostream>
+
+using namespace std;
+void AreaCircum(float r,float &ar, float &cir)
+{
+    ar = 3.14 * r * r;
+    cir = 2 * 3.14 * r;
+}
+
+int main()
+{
+    float radius,area,circum;
+    cout<<"Enter radius:";
+    cin>>radius;
+    AreaCircum(radius, area, circum);
+    cout<<"Area of circle : "<<area<<endl;
+    cout<<"Circumference of circle : "<<circum<<endl;
+    
+    return 0;
+}
+*******************************************************************************/
+//Function Overloading
+#include <iostream>
+using namespace std;
+float Simp_Int(float,float,float);
+float Simp_Int(float,float);
+float Simp_Int(float);
+float Simp_Int();
+int main()
+{
+    float p,r,t,si;
+    si=Simp_Int(2000,15,2);
+    cout<<"Simple Interst = "<<si<<endl;
+    si=Simp_Int(2000,15);
+    cout<<"Simple Interst = "<<si<<endl;
+    si=Simp_Int(2000);
+    cout<<"Simple Interst = "<<si<<endl;
+    si=Simp_Int();
+    cout<<"Simple Interst = "<<si<<endl;    
+    
+    return 0;
+}
+float Simp_Int(float p, float r, float t)
+{
+    float si;
+    si = (p * r * t)/100;
+    return si;
+}
+float Simp_Int(float p, float r)
+{
+    float si;
+    si = (p * r * 3)/100;
+    return si;
+}
+float Simp_Int(float p)
+{
+    float si;
+    si = (p * 10 * 3)/100;
+    return si;
+}
+float Simp_Int()
+{
+    float si;
+    si = (1000 * 10 * 3)/100;
+    return si;
+}
+*******************************************************************************/
+//Function Default agruments
+#include <iostream>
+using namespace std;
+float Simp_Int(float=1000,float=10,float=3);
+int main()
+{
+    float p,r,t,si;
+    si=Simp_Int(2000,15,2);
+    cout<<"Simple Interst = "<<si<<endl;
+    si=Simp_Int(2000,15);
+    cout<<"Simple Interst = "<<si<<endl;
+    si=Simp_Int(2000);
+    cout<<"Simple Interst = "<<si<<endl;
+    si=Simp_Int();
+    cout<<"Simple Interst = "<<si<<endl;    
+    
+    return 0;
+}
+float Simp_Int(float p, float r, float t)
+{
+    float si;
+    si = (p * r * t)/100;
+    return si;
+}
+*******************************************************************************/
+//constant agruments to functions
+#include <iostream>
+using namespace std;
+void show(const int);
+int main()
+{
+    int a=10;
+    show(a);
+    cout<<"a = "<<a<<endl;    
+    
+    return 0;
+}
+void show(const int b)
+{
+    //b=20;//cant be change
+    cout<<"b = "<<b<<endl;
+}
+*******************************************************************************/
+//Inline function with constant arguments
+#include <iostream>
+#define PI 3.14
+using namespace std;
+inline float area(const float r)
+{
+    return (PI*r*r);
+}
+int main()
+{
+    float radius;
+    cout<<"Enter the radius: ";
+    cin>>radius;
+    cout<<"The area of circle : "<<area(radius);
+    
+    return 0;
+}
+*******************************************************************************/
+//Inline function
+#include <iostream>
+#define PI 3.14
+using namespace std;
+inline float lgsTokg(float pounds)
+{
+    return 0.453592 * pounds;
+}
+int main()
+{
+    float lbs;
+    cout<<"Enter your weight in pounds:: ";
+    cin>>lbs;
+    cout<<"Your weight in kilograms : "<<lgsTokg(lbs);
+    
+    return 0;
+}
+*******************************************************************************/
+//pass 1-D array to function
+#include <iostream>
+#include <iomanip>
+using namespace std;
+const int SZ = 5;
+void display(int a[SZ]);
+int main()
+{
+    int arr[SZ],i;
+    for(i=0; i<SZ; i++)
+    {
+        cout<<"Enter Value :: ";
+        cin>>arr[i];
+    }
+    display(arr);
+    return 0;
+}
+void display(int a[SZ])
+{
+    cout<<"Value are ::: ";
+    for(int i=0; i<SZ; i++)
+    cout<<setw(3)<<a[i];
+}
+*******************************************************************************/
+//pass 2-D array to function
+#include <iostream>
+#include <iomanip>
+using namespace std;
+void display(int a[2][3]);
+int main()
+{
+    int arr[2][3]={{10,20,30},{40,50,60}};
+    display(arr);
+    return 0;
+}
+void display(int a[2][3])
+{
+    int i,j;
+    cout<<"Matrix are ::: "<<endl;
+    for(i=0; i<2; i++)
+    {
+        for(j=0;j<3;j++)
+        {
+            cout<<setw(3)<<a[i][j];
+        }
+        cout<<endl;
+    }
+}
+*******************************************************************************/
+//Find nth power of x using resursion
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int power(int, int);
+int main()
+{
+    long x,n,p;
+    cout<<"Enter the Base: ";
+    cin>>x;
+    cout<<"Enter the Exponent/power: ";
+    cin>>n;
+    p = power(x,n);
+    cout<<n<<"th Power of x is = "<<p<<endl;
+    return 0;
+}
+int power(int x,int n)
+{
+    if(n==0)
+    return 1;
+    else
+    return x * power(x,n-1);
+}
+*******************************************************************************/
+//call by value
+#include <iostream>
+using namespace std;
+void cube(int);
+int main()
+{
+    int a = 10;
+    cube(a);
+    cout<<"a = "<<a<<endl;
+}
+void cube(int x)
+{
+    x = x * x * x;
+    cout<<"x = "<<x<<endl;
+}
+*******************************************************************************/
+//call by referance
+#include <iostream>
+using namespace std;
+void cube(int&);
+int main()
+{
+    int a = 10;
+    cube(a);
+    cout<<"a = "<<a<<endl;
+}
+void cube(int &x)
+{
+    x = x * x * x;
+    cout<<"x = "<<x<<endl;
+}
+*******************************************************************************/
+//call by address/pointer
+#include <iostream>
+using namespace std;
+void cube(int*);
+int main()
+{
+    int a = 10;
+    cube(&a);
+    cout<<"a = "<<a<<endl;
+}
+void cube(int *pa)
+{
+    *pa = *pa * *pa * *pa;
+    cout<<"*pa = "<<*pa<<endl;
+}

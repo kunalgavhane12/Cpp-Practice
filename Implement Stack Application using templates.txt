@@ -1,3 +1,4 @@
+*******************************************************************************/
 mini project-2: Implement stack application using templates
 main function: print main menu in loop
 1. int 2. char 3.float 4.double 5.string 6.exit
@@ -34,8 +35,6 @@ stk()
 TOP=-1;
 }
 };
-
-
 *******************************************************************************/
 #include <iostream>
 using namespace std;

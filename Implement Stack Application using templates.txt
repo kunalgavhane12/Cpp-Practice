@@ -35,131 +35,253 @@ TOP=-1;
 }
 };
 
+
 *******************************************************************************/
-
 #include <iostream>
-
 using namespace std;
 
+#define max_size 5
+
+template<class Type>
+class Stack {
+private:
+    static int TOP;
+    Type stk[max_size];
+
+public:
+    Stack() {
+        TOP = -1;
+    }
+
+    bool isFull() {
+        return (TOP == max_size - 1);
+    }
+
+    bool isEmpty() {
+        return (TOP == -1);
+    }
+
+    void push(Type element) {
+        if (isFull()) {
+            cout << "Stack overflow" << endl;
+        } else {
+            TOP++;
+            stk[TOP] = element;
+        }
+    }
+
+    void pop() {
+        if (isEmpty()) {
+            cout << "Stack underflow" << endl;
+        } else {
+            TOP--;
+        }
+    }
+
+    void display_stack() {
+        if (isEmpty()) {
+            cout << "Stack is empty" << endl;
+        } else {
+            for (int i = TOP; i >= 0; i--) {
+                cout << stk[i] << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+
+template<class Type>
+int Stack<Type>::TOP;
+
 int main()
-{
-    int choise,data;
+{   //template class object
+    Stack<int> intStack;
+    Stack<char> charStack;
+    Stack<float> floatStack;
+    Stack<double> doubleStack;
+    Stack<string> stringStack;
+    
+    int mainchoise,subchoise,data;
     do{
-     main_menu:cout<<"1.int 2.char 3.float 4.double 5.string 6.exit\n";
-        cin>>choise;
-        switch(choise)
+        main_menu:cout << "Main Menu:" << endl;
+        cout << "1. int   2. char   3. float   4. double   5. string   6. Exit" << endl;
+        cin>>mainchoise;
+       mainchoise: switch(mainchoise)
         {
             //for interger stack
             case 1 :
-            cout<<"1.push 2.pop 3.display_stack 4.main_menu\n";
-            cin>>choise;
-            switch(choise)
-            {
-                case 1:
-                        cout<<"Enter push data :"<<endl;
-                        cin>>data;
-                      //  push(data);
-                        break;
-                case 2:
-                       // cout<<"pop data :"<<pop()<<endl;
-                        break;
-                case 3:
-                       // display();
-                        break;
-                case 4:
-                        goto main_menu;
-            }
-            break;
-            //for char stack
+                    cout << "Int stack application ready to use" << endl;
+                    cout << "Sub Menu:" << endl;
+                    cout << "1. Push   2. Pop   3. Display Stack   4. Main Menu" << endl;
+                    cin>>subchoise;
+                    while(subchoise !=4)
+                    {
+                        switch(subchoise)
+                        {
+                            case 1: int element;
+                                    cout<<"Enter the element :"<<endl;
+                                    cin>>element;
+                                    intStack.push(element);
+                                    break;
+                            case 2:
+                                   	intStack.pop();
+                                    break;
+                            case 3:
+                                    intStack.display_stack();
+                                    break;
+                            case 4:
+                                    goto main_menu;
+                            default:cout<<"Please read the option carefully"<<endl;
+                            break;
+                        }
+                            cout << "Sub Menu:" << endl;
+                            cout << "1. Push   2. Pop   3. Display Stack   4. Main Menu" << endl;
+                            cin>>subchoise;
+                    }
+                break;
             case 2 :
-            cout<<"1.push 2.pop 3.display_stack 4.main_menu\n";
-            cin>>choise;
-            switch(choise)
-            {
-                case 1:
-                        cout<<"Enter push data :"<<endl;
-                        cin>>data;
-                      //  push(data);
-                        break;
-                case 2:
-                       // cout<<"pop data :"<<pop()<<endl;
-                        break;
-                case 3:
-                       // display();
-                        break;
-                case 4:
-                        goto main_menu;
-            }
-            break;
-            //for float stack
+                    cout << "Char stack application ready to use" << endl;
+                    cout << "Sub Menu:" << endl;
+                    cout << "1. Push   2. Pop   3. Display Stack   4. Main Menu" << endl;
+                    cin>>subchoise;
+                    while(subchoise !=4)
+                    {
+                        switch(subchoise)
+                        {
+                            case 1: char element;
+                                    cout<<"Enter the element :"<<endl;
+                                    cin>>element;
+                                    charStack.push(element);
+                                    break;
+                            case 2:
+                                   	charStack.pop();
+                                    break;
+                            case 3:
+                                    charStack.display_stack();
+                                    break;
+                            case 4:
+                                    goto main_menu;
+                            default:cout<<"Please read the option carefully"<<endl;
+                            break;
+                        }
+                            cout << "Sub Menu:" << endl;
+                            cout << "1. Push   2. Pop   3. Display Stack   4. Main Menu" << endl;
+                            cin>>subchoise;
+                    }
+                break;
             case 3 :
-            cout<<"1.push 2.pop 3.display_stack 4.main_menu\n";
-            cin>>choise;
-            switch(choise)
-            {
-                case 1:
-                        cout<<"Enter push data :"<<endl;
-                        cin>>data;
-                      //  push(data);
-                        break;
-                case 2:
-                       // cout<<"pop data :"<<pop()<<endl;
-                        break;
-                case 3:
-                       // display();
-                        break;
-                case 4:
-                        goto main_menu;
-            }
-            break;
-            //for double stack
+                    cout << "float stack application ready to use" << endl;
+                    cout << "Sub Menu:" << endl;
+                    cout << "1. Push   2. Pop   3. Display Stack   4. Main Menu" << endl;
+                    cin>>subchoise;
+                    while(subchoise !=4)
+                    {
+                        switch(subchoise)
+                        {
+                            case 1: float element;
+                                    cout<<"Enter the element :"<<endl;
+                                    cin>>element;
+                                    floatStack.push(element);
+                                    break;
+                            case 2:
+                                   	floatStack.pop();
+                                    break;
+                            case 3:
+                                    floatStack.display_stack();
+                                    break;
+                            case 4:
+                                    goto main_menu;
+                            default:cout<<"Please read the option carefully"<<endl;
+                            break;
+                        }
+                            cout << "Sub Menu:" << endl;
+                            cout << "1. Push   2. Pop   3. Display Stack   4. Main Menu" << endl;
+                            cin>>subchoise;
+                    }
+                break;
             case 4 :
-            cout<<"1.push 2.pop 3.display_stack 4.main_menu\n";
-            cin>>choise;
-            switch(choise)
-            {
-                case 1:
-                        cout<<"Enter push data :"<<endl;
-                        cin>>data;
-                      //  push(data);
-                        break;
-                case 2:
-                       // cout<<"pop data :"<<pop()<<endl;
-                        break;
-                case 3:
-                       // display();
-                        break;
-                case 4:
-                        goto main_menu;
-            }
-            break;
-            //for string stack
+                    cout << "Double stack application ready to use" << endl;
+                    cout << "Sub Menu:" << endl;
+                    cout << "1. Push   2. Pop   3. Display Stack   4. Main Menu" << endl;
+                    cin>>subchoise;
+                    while(subchoise !=4)
+                    {
+                        switch(subchoise)
+                        {
+                            case 1: double element;
+                                    cout<<"Enter the element :"<<endl;
+                                    cin>>element;
+                                    doubleStack.push(element);
+                                    break;
+                            case 2:
+                                   	doubleStack.pop();
+                                    break;
+                            case 3:
+                                    doubleStack.display_stack();
+                                    break;
+                            case 4:
+                                    goto main_menu;
+                            default:cout<<"Please read the option carefully"<<endl;
+                            break;
+                        }
+                            cout << "Sub Menu:" << endl;
+                            cout << "1. Push   2. Pop   3. Display Stack   4. Main Menu" << endl;
+                            cin>>subchoise;
+                    }
+                break;
             case 5 :
-            cout<<"1.push 2.pop 3.display_stack 4.main_menu\n";
-            cin>>choise;
-            switch(choise)
-            {
-                case 1:
-                        cout<<"Enter push data :"<<endl;
-                        cin>>data;
-                      //  push(data);
-                        break;
-                case 2:
-                       // cout<<"pop data :"<<pop()<<endl;
-                        break;
-                case 3:
-                       // display();
-                        break;
-                case 4:
-                        goto main_menu;
-            }
+                    cout << "String stack application ready to use" << endl;
+                    cout << "Sub Menu:" << endl;
+                    cout << "1. Push   2. Pop   3. Display Stack   4. Main Menu" << endl;
+                    cin>>subchoise;
+                    while(subchoise !=4)
+                    {
+                        switch(subchoise)
+                        {
+                            case 1: char element[10];
+                                    cout<<"Enter the element :"<<endl;
+                                    cin>>element;
+                                    stringStack.push(element);
+                                    break;
+                            case 2:
+                                   	stringStack.pop();
+                                    break;
+                            case 3:
+                                    stringStack.display_stack();
+                                    break;
+                            case 4:
+                                    goto main_menu;
+                            default:cout<<"Please read the option carefully"<<endl;
+                            break;
+                        }
+                            cout << "Sub Menu:" << endl;
+                            cout << "1. Push   2. Pop   3. Display Stack   4. Main Menu" << endl;
+                            cin>>subchoise;
+                    }
+                break;
+            case 6 : 
+            cout << "Thanks for using our application. Please read the manual and come back properly." << endl;
             break;
-            case 6:exit(0);
-            default:
-            cout<<"Invalid choise"<<endl;
-            
+        default :
+            cout << "Invalid option. Please take care." << endl;
+            cout << "Main Menu:" << endl;
+            cout << "1. int   2. char   3. float   4. double   5. string   6. Exit" << endl;
+            for (int i = 0; i < 2; i++) 
+            {
+                if(i==1)
+                cout << "Last chance. Please enter a valid option: ";
+                cin >> mainchoise;
+                
+                if (mainchoise >= 1 && mainchoise <= 6 )
+                {
+                    goto mainchoise;
+                }
+            }
+            cout << "Thanks for using our application. Please read the manual and come back properly." << endl;
+            exit(0);
         }
-    }while(1);
-    
+        
+    }while(mainchoise !=6);
+        
     return 0;
 }

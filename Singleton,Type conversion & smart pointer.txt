@@ -1,0 +1,272 @@
+/******************************************************************************
+Singleton Class: A class having only one object
+*******************************************************************************/
+#include <iostream>
+
+using namespace std;
+class Singleton{
+    static Singleton *sptr;
+    Singleton(){
+        cout<<"Constructor in private."<<endl;
+    }
+    public:
+    static Singleton *create_object()
+    {
+        if(sptr==0)
+        {
+            sptr= new Singleton;
+            return sptr;
+        }
+        else
+        {
+            return sptr;
+        }
+    }
+    void get_data()
+    {
+        cout<<"sptr : "<<sptr<<endl;
+    }
+    ~ Singleton(){
+        if(sptr!=0)
+        {
+            delete sptr;
+        }
+        sptr=0;
+    }
+};
+Singleton *Singleton::sptr=0;
+int main()
+{
+    //Singleton s;
+    Singleton *s1,*s2,*s3;
+    s1=Singleton::create_object();
+    s2=Singleton::create_object();
+    s3=Singleton::create_object();
+    
+    s1->get_data();
+    s2->get_data();
+    s3->get_data();
+    
+    return 0;
+}
+/******************************************************************************
+Type casting Basic type to class type comversion.
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+class Time{
+  int hr;
+  int mint;
+  public:
+  Time()
+  {
+      hr=0,mint=0;
+  }
+  Time(int n)
+  {
+      hr = n/60;
+      mint = n%60;
+  }
+  void get_time()
+  {
+      cout<< hr << " Hours "<< mint << " Minutes "<<endl;
+  }
+};
+
+int main()
+{
+    Time t;
+    t.get_time();
+    int n;
+    cout<<"Enter number of minutes "<<endl;
+    cin>>n;
+    t=n;
+    t.get_time();
+
+    return 0;
+}
+/******************************************************************************
+Type casting class type to Basic type comversion.
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+class Time{
+  int hr;
+  int mint;
+  public:
+  Time()
+  {
+      cout<< "Enter hr and minutes"<<endl;
+      cin>>hr>>mint;
+  }
+  operator int()  //type conversion function
+  {
+      return hr*60+mint;
+  }
+};
+
+int main()
+{
+    Time t;
+    int n;
+    n=t;// n = t.operator int()
+    cout<<"total number of minutes "<< n << endl;
+    
+    return 0;
+}
+/******************************************************************************
+Type casting class type to class type comversion.(target side logic).
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+class A{
+  int a,b;
+  public:
+  A(){
+      a=10;
+      b=20;
+  }
+  int get_a()
+  {
+      return a;
+  }
+  int get_b()
+  {
+      return b;
+  }
+};
+class B{
+    int m,n;
+    public:
+    B(){
+        m=0,n=0; 
+    }
+    B(A obj)
+    {
+        m=obj.get_a();
+        n=obj.get_b();
+    }
+    void get_data(){
+        cout<< m <<" "<< n << endl;
+    }
+};
+int main()
+{
+    A obj;
+    B b;
+    b.get_data();
+    b=obj;
+    b.get_data();
+    
+    return 0;
+}
+/******************************************************************************
+Type casting class type to class type comversion.(source side logic).
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+class B;//forward declartion
+class A{
+  int a,b;
+  public:
+  A(){
+      a=10;
+      b=20;
+  }
+  operator B();// type conversion prototype
+};
+class B{
+    int m,n;
+    public:
+    B(){
+        m=0,n=0; 
+    }
+    int &get_m()
+    {
+        return m;
+    }
+    int &get_n()
+    {
+        return n;
+    }
+    void get_data(){
+        cout<< m <<" "<< n << endl;
+    }
+};
+A :: operator B()
+{
+    B temp;
+    temp.get_m()=a;
+    temp.get_n()=b;
+    return temp;
+}
+int main()
+{
+    A obj;
+    B b;
+    b.get_data();
+    b=obj;
+    b.get_data();
+    
+    return 0;
+}
+/******************************************************************************
+Smart Pointer 
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+class Pointer{
+  int age;
+  const char *name;
+  public:
+  Pointer(){}
+  Pointer(const char *s,int a)
+  {
+      age=a;
+      name=s;
+  }
+  void show()
+  {
+      cout<<"Name : "<<name<<" Age: "<<age<<endl;
+  }
+};
+class SmartPointer{
+  Pointer *ptr;
+  public:
+  SmartPointer(){}
+  SmartPointer(Pointer *p){
+      ptr=p;
+  }
+  Pointer* operator ->(){
+      cout<<"operator -> overloaded"<<endl;
+      return ptr;
+  }
+  Pointer operator *(){
+      cout<<"operator * overloaded"<<endl;
+      return *ptr;
+  }
+  ~SmartPointer(){
+      delete ptr;
+  }
+};
+int main()
+{
+    SmartPointer sp1(new Pointer("King",29));
+    sp1->show(); // s1.operator->()
+
+    SmartPointer sp2(new Pointer("Queen",25));
+    (*sp2).show(); // s2.operator *()
+
+    return 0;
+}
+

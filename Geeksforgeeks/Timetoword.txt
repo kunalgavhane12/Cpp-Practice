@@ -1,0 +1,98 @@
+/*Time to Words
+Given a time in the format of hh:mm (12-hour format) 0 < HH < 12, 0 <= MM < 60. The task is to convert it into words.
+Note: There are different corner cases appears for simplicity refer this example:
+
+6:00 six o'clock
+6:10 ten minutes past six
+6:15 quarter past six
+6:30 half past six
+6:45 quarter to seven
+6:47 thirteen minutes to seven
+
+Example 1:
+
+Input: H = 6, M = 0
+Output: six o' clock
+Explanation: 6H:0M = six o' clock.
+
+Example 2:
+
+Input: N = 6, M = 10
+Output: ten minutes past six
+Explanation: 6H:10M = ten minutes past six.
+
+Your Task:  
+You dont need to read input or print anything. 
+Complete the function timeToWord() which takes H and M as input parameter and
+returns words converted from given time.
+
+Expected Time Complexity: O(1)
+Expected Auxiliary Space: O(k2)
+
+Constraints:
+0 < H < 12
+0= < M < 60*/
+********************************************************************************************
+
+//{ Driver Code Starts
+// Initial Template for C++
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+// User function Template for C++
+class Solution {
+  public:
+    string timeToWord(int H, int M){
+        // code here
+        string num[] = { "zero", "one", "two", "three", "four",
+                        "five", "six", "seven", "eight", "nine",
+                        "ten", "eleven", "twelve", "thirteen",
+                        "fourteen", "fifteen", "sixteen", "seventeen",
+                        "eighteen", "nineteen", "twenty", "twenty one",
+                        "twenty two", "twenty three", "twenty four",
+                        "twenty five", "twenty six", "twenty seven",
+                        "twenty eight", "twenty nine",
+                      };
+         if(M == 0){
+            return (num[H] + " o'clock");
+        }
+        else if(M == 1){
+            return ("one minute past " + num[H]);
+        }
+        else if( M < 30 && M > 0 && M != 15){
+            return (num[M] + " minutes past " + num[H]);
+        }
+        else if( M == 15){
+            return ("quarter past " + num[H]);
+        }
+        else if( M == 30){
+            return ("half past " + num[H]);
+        }
+        else if(M == 45){
+            return ("quarter to " + num[H + 1]);
+        }
+        else if(M == 59){
+            return ( "one minute to " + num[H + 1]);
+        }
+        else if(M > 30 && M != 45){
+            return (num[60 - M] + " minutes to " + num[H + 1]);
+        }
+        
+    }
+};
+
+//{ Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int  H, M;
+        cin >> H >> M;
+        Solution ob;
+        cout<<ob.timeToWord(H,M)<<endl;
+    }
+    return 0;
+}
+
+// } Driver Code Ends

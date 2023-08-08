@@ -1,0 +1,91 @@
+/******************************************************************************
+Class and Object,Default Constructor,Parametrize Constructor,Copy Constructor
+*******************************************************************************/
+#include <iostream>
+
+using namespace std;
+class A{
+  private :
+  int private_id;
+  protected:
+  int protected_id;
+  public:
+  A()
+  {
+      cout<<"Default Constructor"<<endl;
+      private_id=1;
+      protected_id=2;
+  }
+  A(int a,int b)
+  {
+      cout<<"Parametrize Constructor"<<endl;
+      private_id=a;
+      protected_id=b;
+  }
+  A(A&b)
+  {
+      cout<<"Copy Constructor"<<endl;
+      private_id=b.private_id;
+      protected_id=b.protected_id;
+      
+  }
+  void set_Data()
+  {
+      cout<<"Enter private_id: ";
+      cin>>private_id;
+      cout<<"Enter protected_id: ";
+      cin>>protected_id;
+  }
+  void get_data()
+  {
+      cout<<"private_id: "<<private_id<<endl;
+      cout<<"protected_id: "<<protected_id<<endl;
+  }
+};
+int main()
+{
+    A a,a1(100,200);
+    //a.protected_id=5;
+    //a.private_id=10;
+    a.get_data();
+    a.set_Data();
+    a.get_data();
+    a1.get_data();
+    A a2(a1),a3=a;
+    a2.get_data();
+    a3.get_data();
+    return 0;
+}
+*******************************************************************************/
+//Shallow and Deep copy constructor
+#include <iostream>
+#include <string.h>
+using namespace std;
+class Deep{
+  char *p;
+  public:
+  Deep(const char *s)
+  {
+      cout<<"Shallow copy constructor"<<endl;
+      p= new char[strlen(s)+1];
+      strcpy(p,s);
+  }
+  Deep(Deep &ptr)
+  {
+      cout<<"Deep copy constructor"<<endl;
+      p=new char[strlen(ptr.p)+1];
+      strcpy(p,ptr.p);
+  }
+  void get_data()
+  {
+      cout<<p<<endl;
+  }
+};
+int main()
+{
+    Deep p("kunal"),p1(p);
+    p.get_data();
+    p1.get_data();
+
+    return 0;
+}

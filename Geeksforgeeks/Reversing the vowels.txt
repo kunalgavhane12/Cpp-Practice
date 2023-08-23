@@ -1,0 +1,104 @@
+/**********************************************************************
+Given a string consisting of lowercase english alphabets, reverse only the vowels present in it and print the resulting string.
+
+Example 1:
+
+Input:
+S = "geeksforgeeks"
+Output: geeksforgeeks
+Explanation: The vowels are: e, e, o, e, e
+Reverse of these is also e, e, o, e, e.
+
+Example 2:
+
+Input: 
+S = "practice"
+Output: prectica
+Explanation: The vowels are a, i, e
+Reverse of these is e, i, a.
+ 
+
+Example 3:
+
+Input: 
+S = "bcdfg"
+Output: bcdfg
+Explanation: There are no vowels in S.
+
+Your Task:
+You don't need to read input or print anything. Your task is to complete the function modify() which takes the string S as input and returns the resultant string by reversing only the vowels present in S.
+
+
+Expected Time Complexity: O(|S|).
+Expected Auxiliary Space: O(|S|).
+
+
+Constraints:
+1<=|S|<=105
+
+*********************************************************************/
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+class Solution
+{
+    public:
+        string modify (string s)
+        {
+            //code here.
+            string temp="";
+            
+            for(int i=s.length()-1; i>=0; i--)
+            
+                if(isvowel(s[i]))
+                temp+=s[i];
+            
+            int cnt=0;
+            for(int j=0; j<s.length(); j++)
+            {
+                if(isvowel(s[j]))
+                {
+                    s[j]=temp[cnt];
+                    cnt++;
+                }
+            }
+            return s;
+        }
+        int isvowel(char ch)
+        {
+            switch(ch)
+            {
+                case 'a':
+                case 'e':
+                case 'i':
+                case 'o':
+                case 'u':
+                case 'A':
+                case 'E':
+                case 'I':
+                case 'O':
+                case 'U':
+                return 1;
+            }
+            return 0;
+        }
+};
+
+//{ Driver Code Starts.
+
+int main()
+{
+    int t; cin >> t;
+    while (t--)
+    {
+        string s; cin >> s;
+        Solution ob;
+        cout <<ob.modify (s) << endl;
+    }
+}
+// Contributed By: Pranay Bansal
+
+// } Driver Code Ends

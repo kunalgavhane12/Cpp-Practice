@@ -1,0 +1,62 @@
+/*************************************************************************
+Given two strings  S1 and S2 . You have to concatenate both the strings and print the concatenated string.
+
+Example 1:
+
+Input:
+S1 = "Geeksfor"
+S2 = "Geeks"
+Output: GeeksforGeeks
+Explanation: Combined "Geeksfor" and "Geeks"
+ 
+
+Example 2:
+
+Input:
+S1 = "Practice"
+S2 = "Hard"
+Output: PracticeHard
+Explanation: Combined "Practice" and "Hard"
+ 
+
+Your Task:  
+You dont need to read input or print anything. Complete the function conCat() which accepts two strings S1 and S2 as input parameter and returns concatenated string.
+
+
+Expected Time Complexity: O(|S1| + |S2|) .
+Expected Auxiliary Space: O(|S1| + |S2|) .
+where N is the length of a String
+
+
+Constraints:
+1 <= |S1| , |S2| <= 105
+|S| denotes the length of the string S.
+****************************************************************************/
+//{ Driver Code Starts
+#include<iostream>
+#include<string>
+using namespace std;
+
+string conCat(string a , string b);
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string a,b;
+        cin>>a>>b;
+        cout<<conCat(a,b)<<endl;
+    }
+    return 0;
+}
+
+// } Driver Code Ends
+
+
+string conCat(string s1 , string s2)
+{
+    // code here.
+    return s1+s2;
+}

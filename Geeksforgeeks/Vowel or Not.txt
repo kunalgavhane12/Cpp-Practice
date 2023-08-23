@@ -1,0 +1,88 @@
+/************************************************************************
+Given a English alphabet c, Write a program to check whether a character is a vowel or not.
+
+ 
+
+Example 1:
+
+Input:
+c = 'a'
+Output:
+YES
+Explanation:
+'a' is a vowel.
+ 
+
+Example 2:
+
+Input:
+c = 'Z'
+Output:
+NO
+Explanation:
+'Z' is not a vowel.
+ 
+
+ 
+
+Your Task:
+
+You don't need to read input or print anything. Your task is to complete the function isVowel() which takes a character c and returns 'YES' or 'NO'.
+
+ 
+
+Expected Time Complexity: O(1)
+Expected Auxiliary Space: O(1)
+
+ 
+
+Note: c is either lowercase or uppercase English alphabetic character
+
+Constraints:
+
+c belongs to English Alphabets.
+
+**************************************************************************/
+//{ Driver Code Starts
+#include<bits/stdc++.h> 
+using namespace std; 
+
+// } Driver Code Ends
+class Solution{   
+public:
+    string isVowel(char c){
+        // code here
+        switch(c)
+        {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+            case 'A':
+            case 'E':
+            case 'I':
+            case 'O':
+            case 'U':
+            return "YES";
+        }
+        return "NO";
+    }
+
+};
+
+//{ Driver Code Starts.
+int main() 
+{ 
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        char c;
+        cin >> c;
+        Solution ob;
+        cout << ob.isVowel(c) << endl;
+    }
+    return 0; 
+} 
+// } Driver Code Ends

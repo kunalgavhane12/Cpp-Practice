@@ -1,0 +1,53 @@
+/*************************************************************************
+Given a pointer to a variable a, the task is to complete the function updateVar() which will increment the value of the variable by 10. The function does not returns anything.
+
+Example 1:
+
+Input:
+a = 4
+Output: 
+14
+Example 2:
+
+Input:
+a = 61
+Output: 
+71
+Your Task:
+Since this is a functional problem you don't have to worry about input, you just have to complete the function updateVar().
+
+Constraints:
+1 <= T <= 100
+1 <= A <= 103
+
+*******************************************************************************/
+//{ Driver Code Starts
+#include<iostream>
+using namespace std;
+void updateVar(int *a);
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {   int a;
+        cin>>a;
+        updateVar(&a);
+        cout<<a<<"\n";
+    }
+    return 0;
+}
+// } Driver Code Ends
+
+
+/* This function is invoked by passing the address of the variable.
+    You need to increment the value stored in the variable by 10 */
+
+/* complete the function below */
+
+void updateVar(int *a)
+{
+      // write your code here
+      *a+=10;
+}

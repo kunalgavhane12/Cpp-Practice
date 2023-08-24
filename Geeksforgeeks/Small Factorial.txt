@@ -1,0 +1,59 @@
+/*************************************************************************
+Calculate factorial of a given number N.
+ 
+
+Example 1:
+
+Input: 5
+Output: 120
+Explanation: 1 * 2 * 3 * 4 * 5 = 120.
+ 
+
+Your Task:
+You don't need to read or print anything. Your task is to complete the function find_fact() which takes n as input parameter and returns factorial of N.
+ 
+
+Expected Time Complexity: O(N)
+Expected Space Complexity: O(1)
+ 
+
+Constraints:
+1 <= N <= 18
+
+*****************************************************************************/
+//{ Driver Code Starts
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+
+class Solution
+{
+	public:
+		long long int find_fact(int n)
+		{
+		    // Code here.
+		    long long fact=1;
+		    for(long long i=1; i<=n; i++)
+		    fact*=i;
+		    return fact;
+		}
+};
+
+//{ Driver Code Starts.
+int main(){
+    int T;
+    cin >> T;
+    while(T--)
+    {
+    	int n; 
+    	cin >> n;
+    	Solution ob;
+    	long long int ans = ob.find_fact(n);
+    	cout << ans <<"\n";
+    }
+	return 0;
+}
+// } Driver Code Ends

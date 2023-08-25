@@ -1,0 +1,67 @@
+/************************************************************************
+Given a number N, check whether the number is Automorphic number or not.
+A number is called Automorphic number if and only if its square ends in  has the same last digit as the number itself.
+ 
+
+Example 1:
+
+Input: N = 76
+Output: Automorphic
+Explanation: 762 = 5776 which ends with 
+6 which was also the last digt in original number therefore it is a automorphic number.
+Example 2:
+
+Input: N = 14
+Output: Not Automorphic
+Explanation: 142 = 196 which ends with 
+6 but the last digt in original number is 4 therefore it is not a automorphic number.
+Your Task:
+
+You don't need to read or print anything. Your task is to complete the function is_AutomorphicNumber() which takes n as input parameter and returns "Automorphic" if it is Automorphic number otherwise returns "Not Automorphic"(Without quotes).
+ 
+
+Expected Time complexity: O(log(N))
+Expected Space Complexity: O(1)
+
+Constranits:
+1 <= N <= 1000
+
+*****************************************************************************/
+//{ Driver Code Starts
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+
+class Solution
+{
+	public:
+		string is_AutomorphicNumber(int n)
+		{
+		    // Code here
+		    int temp=n*n;
+		    int a =n%10;
+		    if(temp%10!=a)
+		    return "Not Automorphic";
+		    
+		    return "Automorphic";
+		}
+};
+
+//{ Driver Code Starts.
+int main(){
+    int T;
+    cin >> T;
+    while(T--)
+    {
+    	int n;
+    	cin >> n;
+    	Solution ob;
+    	string ans = ob.is_AutomorphicNumber(n);
+    	cout << ans <<"\n";
+    }
+	return 0;
+}
+// } Driver Code Ends

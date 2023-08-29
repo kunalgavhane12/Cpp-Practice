@@ -1,0 +1,82 @@
+/**************************************************************************
+Given 2 integers A and B. Find the maximum value of A$B where $ can be any of the arithmetic operation {+, -, *, / }. Use exception handling to take care of infinite or undefined behaviour.
+
+
+Example 1:
+
+Input: A = 5, B = -5
+Output: 10
+Explaination: Use subtraction. A-B = 10.
+
+Example 2:
+
+Input: A = 4, B = 0
+Output: inf
+Explaination: a/b gives the maximum.
+ie- infinity. 
+
+Your Task:
+You do not need to read input or print anything. Your task is to complete the function maxValue() which takes A and B as input parameters and returns the maximum value of A$B. Return -999999 for infinity.
+Note: If you return -999999 the output will be displayed as "inf".
+
+
+Expected Time Complexity: O(1)
+Expected Auxiliary Space: O(1)
+
+
+Constraints:
+-103 ≤ A, B ≤ 103
+
+*************************************************************************/
+//{ Driver Code Starts
+// Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution{
+public:
+    int maxValue(int A, int B){
+        // code here
+        int maxi = INT_MIN;
+        try{
+            // int p,q,r,s;
+            // p=A+B;
+            // q=A-B;
+            // r=A*B;
+            if(B==0)
+             throw 0;
+            // s=A/B;
+            // maxi=max(maxi,max(p,max(q,max(r,s))));
+            return max(A+B,max(A-B,max(A*B,A/B)));
+        }
+        catch(...)
+        {
+            return -1*999999;
+        }
+        //return maxi;
+    }
+};
+
+//{ Driver Code Starts.
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int A,B;
+        cin>>A>>B;
+        
+        Solution ob;
+        int ans = ob.maxValue(A,B);
+        if(ans == -999999)
+            cout<<"inf\n";
+        else
+            cout<<ans<<"\n";
+    }
+    return 0;
+}
+// } Driver Code Ends

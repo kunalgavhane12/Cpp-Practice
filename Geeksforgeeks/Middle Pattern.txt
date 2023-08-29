@@ -1,0 +1,64 @@
+/****************************************************************************
+Given an odd length word your task is to complete the function printPattern that takes a string s as its argument and prints it from the middle of the word such that it follows the following pattern.
+ 
+
+Input: PROGRAM 
+Output:
+G$ GR$ GRA$ GRAM$ 
+GRAMP$ GRAMPR$ GRAMPRO$
+
+Input: RAT
+Output:
+A$ AT$ ATR$
+
+NOTE: 
+Corresponding to each test case in a new 
+line print the pattern in a  single 
+line where each row of the pattern 
+is separated by a "$" instead 
+of a new line.
+Constraints:
+1 ≤ T ≤ 20
+1<=size of string(s)<=20
+
+*************************************************************************/
+//{ Driver Code Starts
+#include <iostream>
+using namespace std;
+
+void printPattern(string s);
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	string s;
+	cin>>s;
+	printPattern(s);
+	cout<<endl;
+	
+}
+	
+	return 0;
+}
+// } Driver Code Ends
+
+
+/*method prints the given pattern in a single line */
+void printPattern(string s)
+{
+   //Your code here
+   string temp="";
+   for(int i=s.length()/2; i<s.length(); i++)
+   {
+       temp+=s[i];
+       cout<<temp<<"$ ";
+   }
+   for(int i=0; i<s.length()/2; i++)
+   {
+       temp+=s[i];
+       cout<<temp<<"$ ";
+   }
+}

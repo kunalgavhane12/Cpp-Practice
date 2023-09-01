@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+/*
+ * Complete the 'timeConversion' function below.
+ *
+ * The function is expected to return a STRING.
+ * The function accepts STRING s as parameter.
+ */
+
+string timeConversion(string s) {
+    int hours, minutes, seconds;
+    char ampm[3];
+
+    sscanf(s.c_str(), "%d:%d:%d%s", &hours, &minutes, &seconds, ampm);
+
+    if (strcmp(ampm, "PM") == 0 && hours != 12)
+    {
+        hours += 12;
+    } 
+    else if (strcmp(ampm, "AM") == 0 && hours == 12) 
+    {
+        hours = 0;
+    }
+
+    char militaryTime[9];
+    snprintf(militaryTime, sizeof(militaryTime), "%02d:%02d:%02d", hours, minutes, seconds);
+
+    return string(militaryTime);
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s;
+    getline(cin, s);
+
+    string result = timeConversion(s);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
